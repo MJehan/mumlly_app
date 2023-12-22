@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mumlly_app/Utilities/colors.dart';
-import 'package:mumlly_app/Utilities/images.dart';
-import 'package:mumlly_app/Utilities/size_config.dart';
-import 'package:mumlly_app/Utilities/utility.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/billing.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/profile_events.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
+import 'package:new_mumlly_app/Utilities/images.dart';
+import 'package:new_mumlly_app/Utilities/size_config.dart';
+import 'package:new_mumlly_app/Utilities/utility.dart';
+
+
 
 
 class NavDrawer extends StatefulWidget {
@@ -43,20 +47,26 @@ class _NavDrawerState extends State<NavDrawer> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Md Jehan",
+                                "Zainab Bashir",
                                 style: TextStyle(
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: "Jost"
                                 ),
                               ),
-                              Text(
-                                "View Profile",
-                                style: TextStyle(
-                                    fontSize: 12.0,
-                                  color: AppColor.fTextColor,
+                              InkWell(
+                                onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => All_event_page()),
                                 ),
-                                //getCommonProvider.getDriverDetails()!.data!.phoneCode! + getCommonProvider.getDriverDetails()!.data!.phoneNumber!
+                                child: Text(
+                                  "View Profile",
+                                  style: TextStyle(
+                                      fontSize: 12.0,
+                                    color: AppColor.fTextColor,
+                                  ),
+                                  //getCommonProvider.getDriverDetails()!.data!.phoneCode! + getCommonProvider.getDriverDetails()!.data!.phoneNumber!
+                                ),
                               ),
                             ],
                           )
@@ -71,24 +81,29 @@ class _NavDrawerState extends State<NavDrawer> {
             ListTile(
               title:  const Text(
                 'Billing',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(fontWeight: FontWeight.bold,
+                    color: Colors.black54,
+                    fontSize: 16),
               ),
               leading: Icon(
                 Icons.home_sharp,
-                color: AppColor.black,
+                color: Colors.black54,
               ),
-              onTap: () {
-                Utility.pop();
-              },
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => billing()),
+              ),
             ),
             ListTile(
               title: const Text(
                 'Promotions',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(fontWeight: FontWeight.bold,
+                    color: Colors.black54,
+                    fontSize: 16),
               ),
               leading: Icon(
                 Icons.note_outlined,
-                color: AppColor.black,
+                color: Colors.black54,
               ),
               onTap: () {
                 Utility.pop();
@@ -97,11 +112,13 @@ class _NavDrawerState extends State<NavDrawer> {
             ListTile(
               title: const Text(
                 'Support',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(fontWeight: FontWeight.bold,
+                    color: Colors.black54,
+                    fontSize: 16),
               ),
               leading: Icon(
                 Icons.broken_image_outlined,
-                color: AppColor.black,
+                color:Colors.black54,
               ),
               onTap: () {
                 Utility.pop();
@@ -110,24 +127,30 @@ class _NavDrawerState extends State<NavDrawer> {
             ListTile(
               title: const Text(
                 'About',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(fontWeight: FontWeight.bold,
+                    color: Colors.black54,
+                    fontSize: 16),
               ),
               leading: Icon(
                 Icons.settings,
-                color: AppColor.black,
+                color: Colors.black54,
               ),
               onTap: () {
                 Utility.pop();
               },
             ),
+            SizedBox(height: 240,),
+
             ListTile(
               title: const Text(
                 'Sign Out',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(fontWeight: FontWeight.bold,
+                    color: Colors.black54,
+                    fontSize: 16),
               ),
               leading: Icon(
                 Icons.logout,
-                color: AppColor.black,
+                color: Colors.black54,
               ),
               onTap: () {
                 Utility.pop();

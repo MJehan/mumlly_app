@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mumlly_app/Common/Buttons/default_gradient_button.dart';
-import 'package:mumlly_app/Common/Form%20Field/custom_form_field.dart';
-import 'package:mumlly_app/Common/bottom_navigation_bar.dart';
-import 'package:mumlly_app/Provider/provider.dart';
-import 'package:mumlly_app/Provider/theme_provider.dart';
-import 'package:mumlly_app/Screens/Login%20Screens/select_login_screen.dart';
-import 'package:mumlly_app/Screens/Login%20Screens/parent_login.dart';
-import 'package:mumlly_app/Screens/Otp%20Screen/otp_screen_student.dart';
-import 'package:mumlly_app/Screens/Student/student_home_screen.dart';
-import 'package:mumlly_app/Utilities/colors.dart';
-import 'package:mumlly_app/Utilities/images.dart';
-import 'package:mumlly_app/Utilities/size_config.dart';
-import 'package:mumlly_app/Utilities/utility.dart';
+import 'package:new_mumlly_app/Common/Buttons/default_gradient_button.dart';
+import 'package:new_mumlly_app/Common/Form%20Field/custom_form_field.dart';
+import 'package:new_mumlly_app/Provider/provider.dart';
+import 'package:new_mumlly_app/Provider/theme_provider.dart';
+import 'package:new_mumlly_app/Screens/Login%20Screens/parent_login.dart';
+import 'package:new_mumlly_app/Screens/Otp%20Screen/otp_screen_student.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
+import 'package:new_mumlly_app/Utilities/images.dart';
+import 'package:new_mumlly_app/Utilities/size_config.dart';
+import 'package:new_mumlly_app/Utilities/utility.dart';
+
 import 'package:provider/provider.dart';
 
 class StudentLoginScreen extends StatefulWidget {
@@ -190,6 +188,8 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
                             ),
                             const SizedBox(height: 20,),
                             DefaultButtonWithGradient(
+                              paddingBottom: 10,
+                              paddingTop: 10,
                               buttonText: "Sign in",
                               linearGradient: AppGradient.getColorGradient("default"),
                               onTap: () {

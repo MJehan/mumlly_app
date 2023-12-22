@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mumlly_app/Utilities/colors.dart';
-import 'package:mumlly_app/Utilities/images.dart';
-import 'package:mumlly_app/Utilities/size_config.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
+import 'package:new_mumlly_app/Utilities/images.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   static const String routeName = "ProfileScreen";

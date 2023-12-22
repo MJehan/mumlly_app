@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:hive/hive.dart';
-import 'package:mumlly_app/Provider/provider.dart';
-import 'package:mumlly_app/Screens/Parent/Payment/parent_attandance_screen.dart';
-import 'package:mumlly_app/Screens/Parent/parent_home_screen.dart';
-import 'package:mumlly_app/Screens/Student/attendance_screen.dart';
-import 'package:mumlly_app/Screens/Student/student_home_screen.dart';
-import 'package:mumlly_app/Screens/home_screen.dart';
-import 'package:mumlly_app/Utilities/colors.dart';
-import 'package:mumlly_app/Utilities/images.dart';
+import 'package:new_mumlly_app/Screens/Parent/Payment/parent_attandance_screen.dart';
+import 'package:new_mumlly_app/Screens/Parent/parent_home_screen.dart';
+import 'package:new_mumlly_app/Screens/Student/student_home_screen.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
+
 
 class ParentBottomNavigationScreen extends StatefulWidget {
   static const String routeName = "ParentBottomNavigationScreen";

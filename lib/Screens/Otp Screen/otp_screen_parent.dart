@@ -3,15 +3,15 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:mumlly_app/Common/Buttons/default_gradient_button.dart';
-import 'package:mumlly_app/Common/Form%20Field/custom_form_field.dart';
-import 'package:mumlly_app/Common/bottom_navigation_bar.dart';
-import 'package:mumlly_app/Provider/provider.dart';
-import 'package:mumlly_app/Provider/theme_provider.dart';
-import 'package:mumlly_app/Screens/Parent/parent_bottom_navigation_screen.dart';
-import 'package:mumlly_app/Utilities/colors.dart';
-import 'package:mumlly_app/Utilities/images.dart';
-import 'package:mumlly_app/Utilities/size_config.dart';
+import 'package:new_mumlly_app/Common/Buttons/default_gradient_button.dart';
+import 'package:new_mumlly_app/Common/Form%20Field/custom_form_field.dart';
+import 'package:new_mumlly_app/Provider/provider.dart';
+import 'package:new_mumlly_app/Provider/theme_provider.dart';
+import 'package:new_mumlly_app/Screens/Parent/parent_bottom_navigation_screen.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
+import 'package:new_mumlly_app/Utilities/images.dart';
+import 'package:new_mumlly_app/Utilities/size_config.dart';
+
 import 'package:provider/provider.dart';
 
 

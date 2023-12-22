@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:mumlly_app/Common/Buttons/default_border_button.dart';
-import 'package:mumlly_app/Common/Buttons/default_gradient_button.dart';
-import 'package:mumlly_app/Common/Form%20Field/custom_form_field.dart';
-import 'package:mumlly_app/Provider/theme_provider.dart';
-import 'package:mumlly_app/Screens/Login%20Screens/parent_login.dart';
-import 'package:mumlly_app/Screens/Login%20Screens/student_login_screen.dart';
-import 'package:mumlly_app/Utilities/colors.dart';
-import 'package:mumlly_app/Utilities/images.dart';
-import 'package:mumlly_app/Utilities/size_config.dart';
+import 'package:new_mumlly_app/Common/Buttons/default_border_button.dart';
+import 'package:new_mumlly_app/Common/Buttons/default_gradient_button.dart';
+import 'package:new_mumlly_app/Provider/theme_provider.dart';
+import 'package:new_mumlly_app/Screens/Login%20Screens/parent_login.dart';
+import 'package:new_mumlly_app/Screens/Login%20Screens/student_login_screen.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
+import 'package:new_mumlly_app/Utilities/images.dart';
+import 'package:new_mumlly_app/Utilities/size_config.dart';
+
 import 'package:provider/provider.dart';
 
 class SelectLoginScreen extends StatefulWidget {

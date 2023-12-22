@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
-import 'package:mumlly_app/Provider/theme_provider.dart';
-import 'package:mumlly_app/Utilities/colors.dart';
+import 'package:new_mumlly_app/Provider/theme_provider.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
+
+
+
 import 'package:provider/provider.dart';
 
 class DefaultButtonWithGradient extends StatelessWidget {
@@ -39,11 +42,11 @@ class DefaultButtonWithGradient extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: width,
-        padding: EdgeInsets.only(left: 10, right: horizontalPading,top: paddingTop,bottom: paddingBottom),
-        margin: const EdgeInsets.only(left: 0.0, right: 0.0),
+        padding: EdgeInsets.only(left: 0, right: horizontalPading,top: paddingTop,bottom: paddingBottom),
+        margin: const EdgeInsets.only(left: 20.0, right: 20.0),
         //transform: Matrix4.skewX(-.2),
         decoration: BoxDecoration(
-            gradient : linearGradient?? AppGradient.getColorGradient('default'),
+            gradient : linearGradient?? AppGradient.getColorGradient('purple'),
             borderRadius: BorderRadius.circular(10),
             boxShadow: Provider.of<ThemeProvider>(context).themeColor().shadow
         ),

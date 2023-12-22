@@ -10,6 +10,9 @@ class AppColor{
   static Color defaultColor4  = const Color(0xFFb20513);
   static Color defaultColor5 = const Color(0xFFd4c035);
   static Color newButtonColor = const Color(0xff4646b6);
+  static Color newBlue = const Color(0xff568AF1);
+
+
 
   ///Figma Color
   static Color fTextColor = const Color(0xff5667FD);
@@ -32,7 +35,10 @@ class AppColor{
   static Color successfulTextColor = const Color(0xff97D700);
 
   static Color green1 = const Color(0xff008000);
+  static Color cream = const Color(0xffF9F6E4);
 
+  static Color gold = const Color(0xffFC9144);
+  static Color purple = const Color(0xffA020F0);
 
   static Color appBackgroundColor = const Color(0xffEFEFEF);
   static Color hyperLinkTextColor = const Color(0xff0065FC);
@@ -139,6 +145,35 @@ class AppGradient{
               AppColor.white,
             ]);
       }
+      case "box1" : {
+        return LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors:  [
+              AppColor.newBlue,
+              AppColor.white,
+            ]);
+      }
+      case "purple" : {
+        return LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.topRight,
+            colors:  [
+              AppColor.purple,
+
+              AppColor.purple,
+              AppColor.purple,
+              AppColor.purple,
+              AppColor.purple,
+
+              AppColor.gray,
+
+
+
+
+            ]);
+      }
+
 
       default: {
         //default
@@ -150,6 +185,8 @@ class AppGradient{
               AppColor.defaultColorLight,
             ]);
       }
+
+
     }
   }
 }

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:mumlly_app/Common/Buttons/default_gradient_button.dart';
-import 'package:mumlly_app/Screens/Parent/Payment/payment_history_list.dart';
-import 'package:mumlly_app/Screens/Parent/parent_notice_screen.dart';
-import 'package:mumlly_app/Screens/Student/notice%20screen.dart';
-import 'package:mumlly_app/Utilities/colors.dart';
-import 'package:mumlly_app/Utilities/images.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:mumlly_app/Utilities/size_config.dart';
+import 'package:new_mumlly_app/Common/Buttons/default_gradient_button.dart';
+import 'package:new_mumlly_app/Screens/Parent/Payment/payment_history_list.dart';
+import 'package:new_mumlly_app/Screens/Parent/parent_notice_screen.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
+import 'package:new_mumlly_app/Utilities/images.dart';
+import 'package:new_mumlly_app/Utilities/size_config.dart';
+
 
 class ParentHomeScreen extends StatefulWidget {
   static const String routeName = "ParentHomeScreen";

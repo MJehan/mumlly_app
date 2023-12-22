@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:mumlly_app/Common/Buttons/default_gradient_button.dart';
-import 'package:mumlly_app/Common/Form%20Field/custom_form_field.dart';
-import 'package:mumlly_app/Common/bottom_navigation_bar.dart';
-import 'package:mumlly_app/Provider/provider.dart';
-import 'package:mumlly_app/Provider/theme_provider.dart';
-import 'package:mumlly_app/Screens/Login%20Screens/student_login_screen.dart';
-import 'package:mumlly_app/Screens/Otp%20Screen/otp_screen_parent.dart';
-import 'package:mumlly_app/Screens/Otp%20Screen/otp_screen_student.dart';
-import 'package:mumlly_app/Utilities/colors.dart';
-import 'package:mumlly_app/Utilities/images.dart';
-import 'package:mumlly_app/Utilities/size_config.dart';
-import 'package:mumlly_app/Utilities/utility.dart';
+import 'package:new_mumlly_app/Common/Buttons/default_gradient_button.dart';
+import 'package:new_mumlly_app/Common/Form%20Field/custom_form_field.dart';
+import 'package:new_mumlly_app/Common/bottom_navigation_bar.dart';
+import 'package:new_mumlly_app/Provider/provider.dart';
+import 'package:new_mumlly_app/Provider/theme_provider.dart';
+import 'package:new_mumlly_app/Screens/Login%20Screens/login_screen.dart';
+import 'package:new_mumlly_app/Screens/Otp%20Screen/otp_screen_parent.dart';
+import 'package:new_mumlly_app/Screens/Otp%20Screen/otp_screen_student.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
+import 'package:new_mumlly_app/Utilities/images.dart';
+import 'package:new_mumlly_app/Utilities/size_config.dart';
+import 'package:new_mumlly_app/Utilities/utility.dart';
+
 import 'package:provider/provider.dart';
 
 class ParentLoginScreen extends StatefulWidget {
@@ -30,7 +31,7 @@ class _ParentLoginScreenState extends State<ParentLoginScreen> {
   bool isPasswordHide = true;
   bool buttonChecker = true;
   CommonProvider commonProvider = Provider.of<CommonProvider>(Utility.context);
-
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -47,128 +48,277 @@ class _ParentLoginScreenState extends State<ParentLoginScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Column(
                     children: [
-                      Image.asset(AppImage.getPath('parent_login'),width: 200,height: 200,),
+                      Image.asset(AppImage.getPath('parent_login'),width: 110,height: 110,),
                       Form(
                         key: _formKey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
+                            const Center(
+                              child: Text(
+                                "Let's Sign in",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height:5),
+                            const Center(
+                              child: Text(
+                                "Welcome Back,\nYou've been missed!",
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                ),
+                              ),
+                            ),
                             const SizedBox(height: 20,),
-                            const Text(
-                              "Let's Sign in",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 50
-                              ),
-                            ),
-                            const SizedBox(height: 10,),
-                            const Text(
-                              "Welcome Back,\nYou've been missed!",
-                              style: TextStyle(
-                                //fontWeight: FontWeight.bold,
-                                  fontSize: 25
-                              ),
-                            ),
-                            const SizedBox(height: 30,),
                             Padding(
-                              padding: const EdgeInsets.only(left: 20.0, right: 20),
+                              padding: const EdgeInsets.only(left: 10.0, right: 20),
                               child: Column(
-                                children: [
-                                  const SizedBox(height: 20.0),
-                                  Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 60,
-                                        child: Text(
-                                          "Email",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: "Jost"
-                                          ),
-                                        ),
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  const SizedBox(height: 10,),
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 25.0, right: 20),
+                                    child: Text(
+                                      "User Name",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontFamily: "Lato",
                                       ),
-                                      SizedBox(width: SizeConfig.screenWidth*0.1),
-                                      Expanded(
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: CustomFormField(
-                                            themeProvider: themeProvider,
-                                            controller: emailController,//commonProvider.emailController,
-                                            hintText: "Email",
-                                            validator: (value) {
-                                              if(value!.isEmpty){
-                                                return "Email can't be empty";
-                                              }
-                                              return null;
-                                            },
-                                            keyboardType: TextInputType.text,
-                                            suffixWidget: Icon(
-                                              Icons.email_outlined,
-                                              size: 20,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20.0, right: 20),
+                                    child: Column(
+                                      children: [
+                                        TextField(
+
+                                          decoration: InputDecoration(
+                                            fillColor: Colors.grey.shade200,
+                                            filled: true,
+                                            labelText: ' Type your User Name',
+                                            hintStyle: TextStyle(fontSize: 10, fontFamily: 'Lato'),
+
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(10.0), // Set the border radius
+                                              borderSide: BorderSide.none, // Remove the border
+                                            ),
+                                            contentPadding: EdgeInsets.only(left: 10),
+
+                                            prefixIcon: Icon(
+                                              Icons.person,
+                                              size: 25,
                                               color: AppColor.black.withOpacity(0.6),
                                             ),
                                           ),
+
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                  const SizedBox(height: 5.0),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 85,
-                                        child: const Text(
-                                          "password",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: "Jost"
-                                          ),
-                                        ),
+                                  const SizedBox(height: 5,),
+
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 25.0, right: 20),
+                                    child: Text(
+                                      "Email",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontFamily: "Lato",
                                       ),
-                                      SizedBox(width: SizeConfig.screenWidth*0.04),
-                                      Expanded(
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: CustomFormField(
-                                            themeProvider: themeProvider,
-                                            controller: passwordController,
-                                            validator: (value) {
-                                              if(value!.isEmpty){
-                                                return "Email can't be empty";
-                                              }
-                                              return null;
-                                            },
-                                            hintText: "Minimum 8 character",
-                                            obscureText: isPasswordHide,
-                                            suffixWidget: InkWell(
-                                              onTap: () {
-                                                setState(() {
-                                                  isPasswordHide =
-                                                  !isPasswordHide;
-                                                });
-                                              },
-                                              child: Icon(
-                                                isPasswordHide
-                                                    ? Icons.visibility
-                                                    : Icons.visibility_off,
-                                                size: 22.0,
-                                              ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20.0, right: 20),
+                                    child: Column(
+                                      children: [
+                                        TextFormField(
+
+                                          decoration: InputDecoration(
+                                            fillColor: Colors.grey.shade200,
+                                            filled: true,
+
+                                            labelText: ' Type your Email',
+                                            hintStyle: TextStyle(fontSize: 10, fontFamily: 'Lato',
+                                                color: Colors.grey),
+
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(10.0), // Set the border radius
+                                              borderSide: BorderSide.none, // Remove the border
+                                            ),
+                                            contentPadding: EdgeInsets.only(left: 10),
+
+
+                                            prefixIcon: Icon(
+                                              Icons.mail,
+                                              size: 25,
+                                              color: AppColor.black.withOpacity(0.6),
                                             ),
                                           ),
+
+                                          keyboardType: TextInputType.emailAddress,
+
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
+                                  const SizedBox(height: 5.0),
+
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 25.0, right: 20),
+                                    child: Text(
+                                      "Phone Number",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontFamily: "Lato",
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20.0, right: 20),
+                                    child: Column(
+                                      children: [
+                                        TextField(
+
+                                          decoration: InputDecoration(
+                                            fillColor: Colors.grey.shade200,
+                                            filled: true,
+                                            labelText: ' Type your Phone Number',
+                                            hintStyle: TextStyle(fontSize: 10, fontFamily: 'Lato'),
+
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(10.0), // Set the border radius
+                                              borderSide: BorderSide.none, // Remove the border
+                                            ),
+                                            contentPadding: EdgeInsets.only(left: 10),
+
+                                            prefixIcon: Icon(
+                                              Icons.phone,
+                                              size: 25,
+                                              color: AppColor.black.withOpacity(0.6),
+                                            ),
+                                          ),
+                                          keyboardType: TextInputType.phone,
+
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5.0),
+
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 25.0, right: 20),
+                                    child: Text(
+                                      "Password",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontFamily: "Lato",
+
+
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20.0, right: 20),
+                                    child: Column(
+                                      children: [
+                                        TextField(
+                                          obscureText: _obscureText,
+                                          decoration: InputDecoration(
+                                            fillColor: Colors.grey.shade200,
+                                            filled: true,
+                                            labelText: ' Type Your Password',
+                                            hintStyle: TextStyle(fontSize: 10),
+
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(10.0), // Set the border radius
+                                              borderSide: BorderSide.none, // Remove the border
+                                            ),
+                                            contentPadding: EdgeInsets.only(left: 10),
+                                            suffixIcon: GestureDetector(
+                                              onTap:_togglePasswordView ,
+                                              child: Icon(
+                                                _obscureText ? Icons.visibility : Icons.visibility_off, // Add this line
+                                              ),
+
+                                            ),
+                                            prefixIcon: Icon(
+                                              Icons.lock,
+                                              size: 25,
+                                              color: AppColor.black.withOpacity(0.6),
+                                            ),
+                                          ),
+
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5.0),
+
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 25.0, right: 20),
+                                    child: Text(
+                                      "Confirm Password",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontFamily: "Lato",
+
+
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20.0, right: 20),
+                                    child: Column(
+                                      children: [
+                                        TextField(
+                                          obscureText: _obscureText,
+                                          decoration: InputDecoration(
+                                            fillColor: Colors.grey.shade200,
+                                            filled: true,
+                                            labelText: ' Type Your Password',
+                                            hintStyle: TextStyle(fontSize: 10),
+
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(10.0), // Set the border radius
+                                              borderSide: BorderSide.none, // Remove the border
+                                            ),
+                                            contentPadding: EdgeInsets.only(left: 10),
+                                            suffixIcon: GestureDetector(
+                                              onTap:_togglePasswordView ,
+                                              child: Icon(
+                                                _obscureText ? Icons.visibility : Icons.visibility_off, // Add this line
+                                              ),
+
+                                            ),
+                                            prefixIcon: Icon(
+                                              Icons.lock,
+                                              size: 25,
+                                              color: AppColor.black.withOpacity(0.6),
+                                            ),
+                                          ),
+
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5.0),
+
                                   const SizedBox(height: 10.0),
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 10,),
+                            const SizedBox(height:5,),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -191,10 +341,12 @@ class _ParentLoginScreenState extends State<ParentLoginScreen> {
                             ),
                             const SizedBox(height: 20,),
                             DefaultButtonWithGradient(
+                              paddingTop: 15,
+                              paddingBottom: 15,
                               buttonText: "Sign in",
                               color: AppColor.defaultColor,
                               onTap: () {
-                                Navigator.of(context).pushNamed(ParentSendOtpScreen.routeName);
+                                Navigator.of(context).pushNamed(LoginScreen.routeName);
                               },
                             ),
                             const SizedBox(height: 10,),
@@ -306,5 +458,10 @@ class _ParentLoginScreenState extends State<ParentLoginScreen> {
         ),
       ),
     );
+  }
+  void _togglePasswordView() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
   }
 }

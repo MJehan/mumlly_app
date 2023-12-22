@@ -3,15 +3,15 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:mumlly_app/Common/Buttons/default_button.dart';
-import 'package:mumlly_app/Common/Buttons/default_gradient_button.dart';
-import 'package:mumlly_app/Common/Form%20Field/custom_form_field.dart';
-import 'package:mumlly_app/Common/bottom_navigation_bar.dart';
-import 'package:mumlly_app/Provider/provider.dart';
-import 'package:mumlly_app/Provider/theme_provider.dart';
-import 'package:mumlly_app/Utilities/colors.dart';
-import 'package:mumlly_app/Utilities/images.dart';
-import 'package:mumlly_app/Utilities/size_config.dart';
+import 'package:new_mumlly_app/Common/Buttons/default_button.dart';
+import 'package:new_mumlly_app/Common/Buttons/default_gradient_button.dart';
+import 'package:new_mumlly_app/Common/bottom_navigation_bar.dart';
+import 'package:new_mumlly_app/Provider/provider.dart';
+import 'package:new_mumlly_app/Provider/theme_provider.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
+import 'package:new_mumlly_app/Utilities/images.dart';
+import 'package:new_mumlly_app/Utilities/size_config.dart';
+
 import 'package:provider/provider.dart';
 
 
@@ -100,7 +100,8 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
                             "Enter the otp to verify it's you.",
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 15
+                              fontSize: 15,
+                            fontFamily: "Lato",
                           ),
                         ),
                         SizedBox(height: 25,),
@@ -146,9 +147,10 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
                                 ),
                               ),
                               SizedBox(height: 20,),
-                              DefaultButton(
+                              DefaultButtonWithGradient(
+                                paddingBottom: 15,
+                                paddingTop: 15,
                                 buttonText: "Verify Otp",
-                                color: AppColor.newButtonColor,
                                 onTap: (){
                                   otpString = controllersToString(controllers);
                                   print(otpString);
@@ -169,6 +171,7 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
                                   "Resend",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
+                                      fontFamily: "Lato",
                                       color: (CommonProvider().resentButtonChecker) ? AppColor.black : AppColor.gray
                                   ),
                                   textAlign: TextAlign.end,
@@ -182,7 +185,8 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
                           "Didn't receive code?",
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 15
+                              fontSize: 15,
+                            fontFamily: "Lato",
                           ),
                         ),
                         Row(
@@ -191,7 +195,8 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
                               "You ca send a new code in ",
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 15
+                                  fontSize: 15,
+                                fontFamily: "Lato",
                               ),
                             ),
                             Text(
@@ -199,7 +204,8 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                   color: Colors.black,
-                                  fontSize: 15
+                                  fontSize: 15,
+                                fontFamily: "Lato",
                               ),
                             ),
                           ],

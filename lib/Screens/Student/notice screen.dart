@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mumlly_app/Common/bottom_navigation_bar.dart';
-import 'package:mumlly_app/Utilities/colors.dart';
-import 'package:mumlly_app/Utilities/images.dart';
-import 'package:mumlly_app/Utilities/size_config.dart';
+import 'package:new_mumlly_app/Common/bottom_navigation_bar.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/child_managment.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
+import 'package:new_mumlly_app/Utilities/size_config.dart';
+
 
 class NoticeScreen extends StatefulWidget {
   static const String routeName = "NoticeScreen";
@@ -37,9 +38,10 @@ class _NoticeScreenState extends State<NoticeScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           InkWell(
-                              onTap:(){
-                                Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
-                              },
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => HomeScrean()),
+                            ),
                               child: Icon(Icons.arrow_back,color: AppColor.white,size: 25,),
                           ),
                           const SizedBox(width: 110.0),

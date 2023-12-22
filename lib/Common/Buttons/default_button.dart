@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
-import 'package:mumlly_app/Provider/theme_provider.dart';
-import 'package:mumlly_app/Utilities/colors.dart';
+import 'package:new_mumlly_app/Provider/theme_provider.dart';
+
+
+
 import 'package:provider/provider.dart';
 
 class DefaultButton extends StatelessWidget {

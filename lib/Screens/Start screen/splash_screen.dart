@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:mumlly_app/Screens/Login%20Screens/select_login_screen.dart';
-import 'package:mumlly_app/Screens/Start%20screen/get_start_screen.dart';
-import 'package:mumlly_app/Utilities/images.dart';
-import 'package:mumlly_app/Utilities/size_config.dart';
+import 'package:new_mumlly_app/Screens/Start%20screen/get_start_screen.dart';
+import 'package:new_mumlly_app/Utilities/images.dart';
+import 'package:new_mumlly_app/Utilities/size_config.dart';
+
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = "SplashScreen";
