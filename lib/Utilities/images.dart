@@ -115,14 +115,6 @@ class AppImage{
       case "swiming" : {
         return "assets/images/dd.jpg";
       }
-
-
-
-
-
-
-
-
       default : {
         return "assets/images/1.jpg";
       }
