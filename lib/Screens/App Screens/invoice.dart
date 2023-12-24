@@ -32,6 +32,7 @@ class _invoiceState extends State<invoice> {
                 fontFamily: "Lato",
                 color: Colors.white),),
           ),
+          // fontFamily: "Lato",
           Container(
             margin: EdgeInsets.fromLTRB(20, 20, 10, 20),
             height: SizeConfig.screenHeight * 0.76,
