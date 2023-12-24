@@ -112,6 +112,7 @@ class AppImage{
       case "bb" : {
         return "assets/images/vv.png";
       }
+      //add
       case "swiming" : {
         return "assets/images/dd.jpg";
       }
