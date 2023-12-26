@@ -15,7 +15,7 @@ class report extends StatefulWidget {
 
 class _reportState extends State<report> {
 
-  Color _containerColor = AppColor.cream;
+  final Color _containerColor = AppColor.cream;
 
   DateTime setDate = DateTime.now();
 

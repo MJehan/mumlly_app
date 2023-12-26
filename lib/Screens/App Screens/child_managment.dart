@@ -185,10 +185,10 @@ class _HomeScreanState extends State<HomeScrean> {
                               SizedBox(
                                 width: 10,
                               ),
-                              const Column(
+                              Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: const [
                                   SizedBox(
                                     height: 10,
                                   ),
@@ -249,13 +249,13 @@ class _HomeScreanState extends State<HomeScrean> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              const Column(
+                              Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: const [
                                   SizedBox(
                                     height: 10,
                                   ),

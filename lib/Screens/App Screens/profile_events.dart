@@ -214,13 +214,13 @@ class _All_event_pageState extends State<All_event_page> {
             Container(
               height: 215,
               color: Colors.white,
-              child:const Column(
+              child: Column(
                 children: [
         
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
         
                   Row(
-                    children: [
+                    children: const [
                       SizedBox(width: 30,),
                       Icon(Icons.logout,
                           color: Colors.grey),

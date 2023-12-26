@@ -58,6 +58,9 @@ class AppImage{
       case "card_icon" : {
         return "assets/images/time_line.png";
       }
+      case "plus-icon" : {
+        return "assets/images/plus_icon.png";
+      }
       case "default_photo" : {
         return "assets/images/Rectangle 18.png";
       }

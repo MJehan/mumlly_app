@@ -50,7 +50,7 @@ class ThemeProvider with ChangeNotifier {
   // Global theme data we are always check if the light theme is enabled #isLightTheme
   ThemeData themeData() {
     return ThemeData(
-        fontFamily: "Lato",
+       fontFamily: "Poppins",
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primarySwatch: isLightTheme ? Colors.grey : Colors.grey,
         primaryColor: isLightTheme ? Color(0xFFE8EAEE) : Colors.black,

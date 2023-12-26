@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:hive/hive.dart';
 import 'package:new_mumlly_app/Common/bottom_navigation_bar.dart';
-import 'package:new_mumlly_app/Provider/provider.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/add_new_child.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/barcode.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/childPopup.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/invoice.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/transfer.dart';
 import 'package:new_mumlly_app/Screens/Login%20Screens/login_screen.dart';
 import 'package:new_mumlly_app/Screens/Login%20Screens/parent_login.dart';
 import 'package:new_mumlly_app/Screens/Login%20Screens/select_login_screen.dart';
@@ -17,7 +11,6 @@ import 'package:new_mumlly_app/Screens/Otp%20Screen/otp_screen_student.dart';
 import 'package:new_mumlly_app/Screens/Parent/Payment/parent_attandance_screen.dart';
 import 'package:new_mumlly_app/Screens/Parent/Payment/payment_history_list.dart';
 import 'package:new_mumlly_app/Screens/Parent/parent_bottom_navigation_screen.dart';
-import 'package:new_mumlly_app/Screens/Parent/parent_home_screen.dart';
 import 'package:new_mumlly_app/Screens/Parent/parent_notice_screen.dart';
 import 'package:new_mumlly_app/Screens/Profile/profile_screen.dart';
 import 'package:new_mumlly_app/Screens/Start%20screen/get_start_screen.dart';
@@ -25,12 +18,12 @@ import 'package:new_mumlly_app/Screens/Start%20screen/splash_screen.dart';
 import 'package:new_mumlly_app/Screens/Student/attendance_screen.dart';
 import 'package:new_mumlly_app/Screens/Student/notice%20screen.dart';
 import 'package:new_mumlly_app/Screens/Student/student_home_screen.dart';
-
-
 import 'package:path_provider/path_provider.dart' as pathProvider;
 import 'package:provider/provider.dart';
 
+import 'Provider/provider.dart';
 import 'Provider/theme_provider.dart';
+import 'Screens/Parent/parent_home_screen.dart';
 import 'Screens/home_screen.dart';
 import 'Utilities/size_config.dart';
 
@@ -121,12 +114,6 @@ class _MyAppState extends State<MyApp> {
                       PaymentHistoryListScreen.routeName : (context)=> PaymentHistoryListScreen(),
                       ParentsAttendanceScreen.routeName : (context)=> ParentsAttendanceScreen(),
                       ParentsNoticeScreen.routeName : (context)=> ParentsNoticeScreen(),
-                      invoice.routeName : (context)=> invoice(),
-                      Transfer_child.routeName : (context)=> Transfer_child(),
-                      add_new_child.routeName : (context)=> add_new_child(),
-                      add_new_child.routeName : (context)=> add_new_child(),
-                      child_popup.routeName : (context)=> child_popup(),
-                      ticket.routeName : (context)=> ticket(),
                     },
                   ),
                 );

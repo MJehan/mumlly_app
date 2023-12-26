@@ -1,17 +1,14 @@
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:new_mumlly_app/Common/Buttons/default_button.dart';
-import 'package:new_mumlly_app/Common/Buttons/default_gradient_button.dart';
 import 'package:new_mumlly_app/Common/Form%20Field/custom_form_field.dart';
 import 'package:new_mumlly_app/Provider/provider.dart';
-import 'package:new_mumlly_app/Provider/theme_provider.dart';
 import 'package:new_mumlly_app/Screens/Login%20Screens/parent_login.dart';
 import 'package:new_mumlly_app/Screens/Otp%20Screen/otp_screen_student.dart';
 import 'package:new_mumlly_app/Utilities/colors.dart';
 import 'package:new_mumlly_app/Utilities/images.dart';
 import 'package:new_mumlly_app/Utilities/size_config.dart';
 import 'package:new_mumlly_app/Utilities/utility.dart';
-
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -42,7 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
         filteredCountries: countryfilter
     );
   }
-  bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
     themeProvider = Provider.of<ThemeProvider>(context);
@@ -63,8 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         "Log In",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 35,
-                          fontFamily: "Lato",
+                            fontSize: 40
                         ),
                       ),
                       const SizedBox(height: 30,),
@@ -79,101 +74,93 @@ class _LoginScreenState extends State<LoginScreen> {
                             const Padding(
                               padding: EdgeInsets.only(left: 25.0, right: 20),
                               child: Text(
-                                "User Name",
+                                "Phone Number",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                     fontSize: 16.0,
-                                  fontFamily: "Lato",
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "Jost"
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 5.0),
+                            const SizedBox(height: 5),
                             Padding(
                               padding: const EdgeInsets.only(left: 20.0, right: 20),
                               child: Column(
                                 children: [
-                                  TextField(
-
-                                    decoration: InputDecoration(
-                                      fillColor: Colors.grey.shade200,
-                                      filled: true,
-                                      labelText: ' Type your User Name',
-                                      hintStyle: TextStyle(fontSize: 10, fontFamily: 'Lato'),
-
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10.0), // Set the border radius
-                                        borderSide: BorderSide.none, // Remove the border
-                                      ),
-                                      contentPadding: EdgeInsets.only(left: 10),
-
-                                      prefixIcon: Icon(
-                                        Icons.person,
-                                        size: 25,
-                                        color: AppColor.black.withOpacity(0.6),
-                                      ),
-                                    ),
-
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 10,),
-
-                            const Padding(
-                              padding: EdgeInsets.only(left: 25.0, right: 20),
-                              child: Text(
-                                "Password",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontFamily: "Lato",
-
-
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 5,),
-
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20.0, right: 20),
-                              child: Column(
-                                children: [
-                                  TextField(
-                                    obscureText: _obscureText,
-                                    decoration: InputDecoration(
-                                      fillColor: Colors.grey.shade200,
-                                      filled: true,
-                                      labelText: ' Type Your Password',
-                                      hintStyle: TextStyle(fontSize: 10),
-
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10.0), // Set the border radius
-                                        borderSide: BorderSide.none, // Remove the border
-                                      ),
-                                      contentPadding: EdgeInsets.only(left: 10),
-                                      suffixIcon: GestureDetector(
-                                        onTap:_togglePasswordView ,
-                                        child: Icon(
-                                          _obscureText ? Icons.visibility : Icons.visibility_off, // Add this line
+                                  Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () async {
+                                          final code = await countryPicker.showPicker(
+                                              context: context,
+                                              initialSelectedLocale: "BD");
+                                          setState(() {
+                                            countryCode = code;
+                                            phoneCode = countryCode!.dialCode;
+                                          });
+                                        },
+                                        child: Container(
+                                          margin: EdgeInsets.only(top: SizeConfig.screenHeight*0.004),
+                                          padding: EdgeInsets.only(
+                                              left: SizeConfig.screenWidth*0.02, right: SizeConfig.screenWidth*0.015,
+                                              top: SizeConfig.screenHeight*0.017, bottom: SizeConfig.screenHeight*0.017
+                                          ),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                            BorderRadius.circular(5),
+                                            color: AppColor.gray.withOpacity(0.4),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                child: countryCode != null
+                                                    ? countryCode!.flagImage
+                                                    : null,
+                                              ),
+                                              SizedBox(width: SizeConfig.screenWidth*0.01),
+                                              Container(
+                                                child: Text(
+                                                  countryCode?.dialCode ?? "Select Country" ,
+                                                  style: const TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 12
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-
                                       ),
-                                      prefixIcon: Icon(
-                                        Icons.lock,
-                                        size: 25,
-                                        color: AppColor.black.withOpacity(0.6),
+                                      SizedBox(width: SizeConfig.screenWidth*0.01),
+                                      Expanded(
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: CustomFormField(
+                                            themeProvider: themeProvider,
+                                            controller: emailController,//commonProvider.emailController,
+                                            hintText: "Phone Number",
+                                            validator: (value) {
+                                              if(value!.isEmpty){
+                                                return "Phone Numeber can't be empty";
+                                              }
+                                              return null;
+                                            },
+                                            keyboardType: TextInputType.text,
+                                            suffixWidget: Icon(
+                                              Icons.phone,
+                                              size: 20,
+                                              color: AppColor.black.withOpacity(0.6),
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-
+                                    ],
                                   ),
-
-
                                   const SizedBox(height: 20.0),
-                                  DefaultButtonWithGradient(
-                                    paddingBottom: 15,
-                                    paddingTop: 15,
+                                  DefaultButton(
                                     buttonText: "Log In",
-
+                                    color: AppColor.newButtonColor,
                                     onTap: () {
                                       Navigator.of(context).pushNamed(SendOtpScreen.routeName);
                                     },
@@ -181,15 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ],
                               ),
                             ),
-
-                            const SizedBox(height: 10.0),
-
-
-
-
-
-
-
+                            const SizedBox(height: 15,),
                             Column(
                               children: [
                                 Padding(
@@ -206,7 +185,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ' Create an account? ',
                                           style: TextStyle(
                                             fontSize: 16,
-                                            fontFamily: "Lato",
                                           ),
                                         ),
                                         Text(
@@ -214,7 +192,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                           style: TextStyle(
                                             color: AppColor.loginTabColor,
                                             fontSize: 16,
-                                            fontFamily: "Lato",
                                           ),
                                         ),
                                       ],
@@ -237,11 +214,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-  void _togglePasswordView() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
 }
-
-
