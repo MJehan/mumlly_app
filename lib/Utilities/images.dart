@@ -4,27 +4,14 @@ class AppImage{
       case "appLogo" : {
         return "assets/images/logoschool.png";
       }
-      case "getStart" : {
-        return "assets/images/get_start.png";
-      }
       case "login_back" : {
         return "assets/images/Background.png";
       }
-      case "student_login_image" : {
-        return "assets/images/school3.png";
-      }
-      case "card1" : {
-        return "assets/images/school.png";
-      }
+
       case "card2" : {
         return "assets/images/school7.png";
       }
-      case "card3" : {
-        return "assets/images/school4.png";
-      }
-      case "parent_login" : {
-        return "assets/images/school1.png";
-      }
+
       case "card11" : {
         return "assets/images/card11.jpeg";
       }
@@ -103,16 +90,36 @@ class AppImage{
       case "airtel" : {
         return "assets/images/airtel.jpg";
       }
-      case "bb" : {
-        return "assets/images/vv.png";
+      case "Applogo2" : {
+        return "assets/images/logo_without_name.png";
       }
+      case "splash_image" : {
+        return "assets/images/main image.jpg";
+      }
+      case "after_school" : {
+        return "assets/images/after_school.png";
+      }
+
+      case "lessionPlan" : {
+        return "assets/images/lession.png";
+      }
+
+      case "lession1": {
+        return "assets/icon_img/Combined-Shape@2x.png";
+      }
+      case "lession2": {
+        return "assets/icon_img/Combined-Shape.png";
+      }
+      case "tennis": {
+        return "assets/images/tenis.jpg";
+      }
+      case "Billing_image": {
+        return "assets/images/billing_card.png";
+      }
+
       case "physics" : {
         return "assets/images/cvc.jpg";
       }
-      case "bb" : {
-        return "assets/images/vv.png";
-      }
-      //add
       case "swiming" : {
         return "assets/images/dd.jpg";
       }

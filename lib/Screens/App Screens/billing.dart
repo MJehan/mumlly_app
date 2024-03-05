@@ -5,8 +5,10 @@ import 'package:new_mumlly_app/Common/side_bar.dart';
 import 'package:new_mumlly_app/Screens/App%20Screens/view_bill.dart';
 import 'package:new_mumlly_app/Screens/Student/attendance_screen.dart';
 import 'package:new_mumlly_app/Screens/Student/student_home_screen.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
+import 'package:new_mumlly_app/Utilities/images.dart';
 import 'package:new_mumlly_app/Utilities/size_config.dart';
-import 'child_managment.dart';
+import 'child_profile.dart';
 import 'invoice.dart';
 
 class billing extends StatefulWidget {
@@ -18,20 +20,15 @@ class billing extends StatefulWidget {
 }
 
 class _billingState extends State<billing> {
-  int _currentIndex = 0;
-  final List<Widget>screens = [
-    const StudentHomeScreen(),
-    const AttendanceScreen(),
-    const HomeScrean(),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
 
       body: Column(
         children: [
-          SizedBox(height:50,),
+          SizedBox(height:80,),
           Row(
             children: [
               Container(
@@ -39,7 +36,7 @@ class _billingState extends State<billing> {
                 height: SizeConfig.screenHeight * 0.055,
                 width: SizeConfig.screenWidth * 0.11,
                   decoration: BoxDecoration(
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: Colors.grey,
                         blurRadius: 2.0,
@@ -58,17 +55,18 @@ class _billingState extends State<billing> {
                     ),
                     child: Icon(Icons.arrow_back)),
               ),
-              Text('Parents Name', style: TextStyle(
+              const Text('Parents Name', style: TextStyle(
                   fontSize: 17, fontWeight: FontWeight.bold,
                   fontFamily: "Lato",
                   color: Colors.black),),
-              SizedBox(width: 110,),
+              SizedBox(width: SizeConfig.screenWidth * 0.28,),
+
               Container(
                 margin: EdgeInsets.fromLTRB(22, 0, 20, 0),
                 height: SizeConfig.screenHeight * 0.055,
                 width: SizeConfig.screenWidth * 0.11,
                 decoration: BoxDecoration(
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.grey,
                       blurRadius: 2.0,
@@ -93,16 +91,22 @@ class _billingState extends State<billing> {
                 width: SizeConfig.screenWidth * 0.88,
 
                 decoration: BoxDecoration(
-                    color: Colors.purple,
+                  image: DecorationImage(
+                    image:  AssetImage(AppImage.getPath("Billing_image")),
+                    fit: BoxFit.cover,
+
+                  ),
                     borderRadius: BorderRadius.circular(20)
                 ),
+
                 child: Row(
                   children: [
                     Column(
                       children: [
                         Container(
                           margin: EdgeInsets.all(20),
-                          child: Column(
+
+                          child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Next Payment', style: TextStyle(
@@ -117,23 +121,25 @@ class _billingState extends State<billing> {
                         )
                       ],
                     ),
+                    SizedBox( width: SizeConfig.screenWidth * 0.07,),
 
                     Column(
                       children: [
                         Container(
                           height: SizeConfig.screenHeight * 0.035,
                           width: SizeConfig.screenWidth * 0.15,
-                          margin: EdgeInsets.fromLTRB(50, 30, 0, 0),
+                          margin: EdgeInsets.all(30),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20)
                           ),
                           child:Container(
-                            margin: EdgeInsets.fromLTRB(13, 4, 2, 5),
-                            child: Text('April', style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold,
-                                fontFamily: "Lato",
-                                color: Colors.black),),
+                            child: const Center(
+                              child: Text('April', style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold,
+                                  fontFamily: "Lato",
+                                  color: Colors.black),),
+                            ),
                           ),
                         )
                       ],
@@ -147,17 +153,18 @@ class _billingState extends State<billing> {
               )
             ],
           ),
+          SizedBox(height: 15),
           Row(
             children: [
              Container(
                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                child: Row(
                  children: [
-                   Text('Invoice', style: TextStyle(
+                   const Text('Invoice', style: TextStyle(
                        fontSize: 16, fontWeight: FontWeight.bold,
                        fontFamily: "Lato",
                        color: Colors.black),),
-                   SizedBox(width: 225,),
+                   SizedBox(width: SizeConfig.screenWidth* 0.6,),
                    InkWell(
                      onTap: () => Navigator.push(
                        context,
@@ -167,7 +174,7 @@ class _billingState extends State<billing> {
                      child: Text('view all', style: TextStyle(
                          fontSize: 16, fontWeight: FontWeight.bold,
                          fontFamily: "Lato",
-                         color: Colors.purple.shade900),),
+                         color:AppColor.defaultColor1,),),
                    ),
 
                  ],
@@ -178,9 +185,9 @@ class _billingState extends State<billing> {
           Row(
             children: [
               Container(
-                height: SizeConfig.screenHeight* 0.30,
-                width: SizeConfig.screenWidth* 0.88,
-                margin: EdgeInsets.fromLTRB(20, 5, 0, 0),
+                height: SizeConfig.screenHeight* 0.34,
+                width: SizeConfig.screenWidth* 0.89,
+                margin: EdgeInsets.fromLTRB(20, 5, 20, 0),
 
                 decoration: BoxDecoration(
                     color: Colors.grey.shade300,
@@ -192,7 +199,7 @@ class _billingState extends State<billing> {
                       children: [
                         Container(
                           margin: EdgeInsets.fromLTRB(135, 10, 25, 0),
-                          child: Row(
+                          child: const Row(
                             children: [
                               Text('JAN 2023', style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold,
@@ -208,7 +215,7 @@ class _billingState extends State<billing> {
                     Row(
                       children: [
                         Container(
-                            margin: EdgeInsets.all(25),
+                            margin: EdgeInsets.all(15),
                             height: SizeConfig.screenHeight * 0.045,
                             width: SizeConfig.screenWidth * 0.095,
                             decoration: BoxDecoration(
@@ -217,13 +224,16 @@ class _billingState extends State<billing> {
 
                             )
                         ),
-                        Text('Child Name', style: TextStyle(
+                        SizedBox(width: 5,),
+                        const Text('Child Name',
+                          style: TextStyle(
                             fontSize: 17, fontWeight: FontWeight.bold,
                             fontFamily: "Lato",
                             color: Colors.black),),
-                        SizedBox(width: 90,),
+                        Spacer(),
                         Container(
-                          child: Column(
+                          margin: EdgeInsets.all(15),
+                          child: const Column(
                             children: [
                               Text('Total', style: TextStyle(
                                   fontSize: 12, fontWeight: FontWeight.bold,
@@ -239,6 +249,7 @@ class _billingState extends State<billing> {
                         )
                       ],
                     ),
+                    SizedBox(height: 30,),
                     Row(
                       children: [
                         Container(
@@ -247,22 +258,22 @@ class _billingState extends State<billing> {
                             child: Container(
                               height: SizeConfig.screenHeight * 0.055,
                               width: SizeConfig.screenWidth * 0.74,
+                              padding: EdgeInsets.only(left: 15,right: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.white,
                               ),
                               child: Row(
                                 children: [
-                                  SizedBox(width: 20,),
 
-                                  Text(
-                                    'Your total payment',
-                                    style: TextStyle(
-                                        fontSize: 15,fontFamily: "Lato",
-                                        color: Colors.black),
+                                  const Expanded(
+                                    child: Text(
+                                      'Your total payment',
+                                      style: TextStyle(
+                                          fontSize: 15,fontFamily: "Lato",
+                                          color: Colors.black),
+                                    ),
                                   ),
-                                  SizedBox(width: 70,),
-
                                   Container(
                                     height: SizeConfig.screenHeight * 0.035,
                                     width: SizeConfig.screenWidth * 0.13,
@@ -285,47 +296,53 @@ class _billingState extends State<billing> {
                       ],
 
                     ),
-                    SizedBox(height: 10,),
-                    DefaultButtonWithGradient(
-                      buttonText: "View Invoice",
-                      paddingTop: 10,
-                      paddingBottom: 10,
-                      horizontalPading: 50,
-                      onTap: () {
-                        Navigator.of(context).pushNamed(invoice.routeName);
-                      },
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: DefaultButtonWithGradient(
+                        buttonText: "View Invoice",
+                        paddingTop: 10,
+                        paddingBottom: 10,
+                        // horizontalPading: 50,
+                        onTap: () {
+                          Navigator.of(context).pushNamed(invoice.routeName);
+                        },
+                      ),
                     ),
 
 
                   ],
                 ),
 
-              )
+              ),
             ],
           ),
-          SizedBox(height: 10,),
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.fromLTRB(20, 10, 0, 0),
-                child: Row(
-                  children: [
-                    Text('Payment Method', style: TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold,
-                        fontFamily: "Lato",
-                        color: Colors.black),),
-                    SizedBox(width: 160,),
-                    Text('view all', style: TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold,
-                        fontFamily: "Lato",
-                        color: Colors.purple.shade900),),
+          SizedBox(height: 30,),
+          Expanded(
+            child: Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                  child: Row(
+                    children: [
+                      const Text('Payment Method', style: TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold,
+                          fontFamily: "Lato",
+                          color: Colors.black),),
+                      SizedBox(width: SizeConfig.screenWidth* 0.4),
 
-                  ],
-                ),
-              )
-            ],
+
+                      Text('view all', style: TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold,
+                          fontFamily: "Lato",
+                          color:AppColor.defaultColor1,),),
+            
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(height: 5),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -340,13 +357,13 @@ class _billingState extends State<billing> {
                   margin: EdgeInsets.fromLTRB(15, 3, 5, 0),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.purple.shade200,
+                      color: AppColor.defaultButtonColor,
                     ),
 
                     borderRadius: BorderRadius.circular(25),
 
                   ),
-                  child: Column(
+                  child: const Column(
                     children: [
                       CircleAvatar(
                         radius: 28, // Image radius
@@ -370,13 +387,13 @@ class _billingState extends State<billing> {
                   margin: EdgeInsets.fromLTRB(10, 3, 5, 0),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.purple.shade200,
+                      color: AppColor.defaultButtonColor,
                     ),
 
                     borderRadius: BorderRadius.circular(25),
 
                   ),
-                  child: Column(
+                  child: const Column(
                     children: [
                       CircleAvatar(
                         radius: 28, // Image radius
@@ -398,46 +415,16 @@ class _billingState extends State<billing> {
 
                   padding: EdgeInsets.all(10),
                   margin: EdgeInsets.fromLTRB(10, 3, 5, 0),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.purple.shade200,
-                    ),
-
-                    borderRadius: BorderRadius.circular(25),
-
-                  ),
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 28, // Image radius
-                        backgroundImage: AssetImage('assets/images/airtel.jpg'),
-                      ),
-
-                      SizedBox(height: 5,),
-                      Text('Airtel', style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.bold,
-                          fontFamily: "Lato",
-                          color: Colors.black))
-
-                    ],
-                  ),
-                ),
-                Container(
-                  height: SizeConfig.screenHeight * 0.14,
-                  width: SizeConfig.screenWidth * 0.25,
-
-                  padding: EdgeInsets.all(1),
-                  margin: EdgeInsets.fromLTRB(20, 3, 5, 0),
 
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.purple.shade200,
+                      color: AppColor.defaultButtonColor,
                     ),
                     borderRadius: BorderRadius.circular(25),
 
 
                   ),
-                  child: Column(
+                  child: const Column(
                     children: [
                       // CircleAvatar(// Image radius
                       //   backgroundImage: AssetImage('assets/images/mpesa.png'),
@@ -453,68 +440,44 @@ class _billingState extends State<billing> {
                     ],
                   ),
                 ),
+                Container(
+                  height: SizeConfig.screenHeight * 0.14,
+                  width: SizeConfig.screenWidth * 0.25,
 
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.fromLTRB(10, 3, 5, 0),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: AppColor.defaultButtonColor,
+                    ),
 
+                    borderRadius: BorderRadius.circular(25),
 
+                  ),
+                  child: const Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 28, // Image radius
+                        backgroundImage: AssetImage('assets/images/airtel.jpg'),
+                      ),
 
+                      SizedBox(height: 5,),
+                      Text('Airtel', style: TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.bold,
+                          fontFamily: "Lato",
+                          color: Colors.black))
 
+                    ],
+                  ),
+                ),
 
               ],
-
             ),
           ),
-          SizedBox(height: 10,)
+          SizedBox(height: 8)
 
         ],
       ),
-
-      bottomNavigationBar: Container(
-        height: 60.0, // Set the desired height
-        child: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (int index) {
-            setState(() {
-              _currentIndex = index;
-            });
-            if (index == 0) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => StudentHomeScreen()),
-              );
-            }
-            if (index == 1) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AttendanceScreen()),
-              );
-            }
-            if (index == 2) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeScrean()),
-              );
-            }
-          },
-          items: [
-            BottomNavigationBarItem(
-
-              icon: Icon(Icons.home),
-              label: '',
-
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: '',
-            ),
-          ],
-        ),
-      ),
-
-
     );
   }
 }

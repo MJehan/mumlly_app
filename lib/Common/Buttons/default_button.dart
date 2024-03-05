@@ -19,7 +19,7 @@ class DefaultButton extends StatelessWidget {
     this.paddingBottom = 20,
     this.width,
     this.linearGradient,
-    this.textSize = 18,
+    this.textSize = 18, required Null Function() onPressed,
   }) : super(key: key);
 
   final String? buttonText;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:new_mumlly_app/Common/Buttons/default_button.dart';
 import 'package:new_mumlly_app/Common/Buttons/default_gradient_button.dart';
 import 'package:new_mumlly_app/Screens/Login%20Screens/login_screen.dart';
 import 'package:new_mumlly_app/Utilities/colors.dart';
@@ -24,7 +23,7 @@ class _GetStartScreenState extends State<GetStartScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-              AppImage.getPath("getStart"),
+              AppImage.getPath("splash_image"),
             ),
             fit: BoxFit.fill,
             alignment: Alignment.topCenter,
@@ -44,7 +43,7 @@ class _GetStartScreenState extends State<GetStartScreen> {
                     onTap: (){
                       Navigator.of(context).pushNamed(LoginScreen.routeName);
                     },
-                    color: Colors.purple,
+                    color: AppColor.defaultColor1,
                   ),
                 ),
               ),

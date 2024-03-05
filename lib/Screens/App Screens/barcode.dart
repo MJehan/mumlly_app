@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:new_mumlly_app/Common/Buttons/default_gradient_button.dart';
+import 'package:new_mumlly_app/Utilities/doted_line.dart';
 import 'package:new_mumlly_app/Utilities/images.dart';
 import 'package:new_mumlly_app/Utilities/size_config.dart';
+import 'package:new_mumlly_app/Utilities/utility.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
 
@@ -17,64 +19,58 @@ class ticket extends StatefulWidget {
 class _ticketState extends State<ticket> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
+    return Scaffold(
 
-          toolbarHeight: 80,
-          title: const Text(
-            '          My Ticket',style:
-          TextStyle(fontSize: 18,
-              fontFamily: "Lato",
-              fontWeight: FontWeight.w500),
-          ),
-
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30),
-
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(height: 60),
+          Row(
+            children: [
+              InkWell(
+                  onTap: () {
+                    Utility.pop();
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 20.0),
+                    child: Icon(Icons.arrow_back_ios_new,
+                      color: Colors.black,),
+                  )
               ),
 
-              gradient: LinearGradient(
-                  begin: Alignment.bottomLeft,
-                  end: Alignment.topRight,
-                  colors: <Color>[
-                    Colors.white,
-                    Colors.purple.shade50,
-                    Colors.purple.shade600.withOpacity(0.3)
-                  ]),
-            ),
+              SizedBox(width: 100,),
+              Container(
+                child: const Column(
+                  children: [
+                    Center(
+                      child: Text('My Ticket', style: TextStyle(
+                          fontSize: 16,fontWeight: FontWeight.w500,
+                          fontFamily: "Lato",
+                          color: Colors.black),),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-
-
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-
-          children: [
-            Card(
-
-              margin: EdgeInsets.all(20),
-
+          Expanded(
+            child: Card(
+              margin: EdgeInsets.all(15),
               color: Colors.white,
               elevation: 15,
               child: Column(
                 children: [
+                  SizedBox(height: 40,),
                   Container(
-                    height: SizeConfig.screenHeight * 0.71,
-                    width: SizeConfig.screenWidth * 0.9,
+                    padding: EdgeInsets.only(bottom: 35),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
 
                         Center(
                           child: Container(
-                            height: 200,
-                            width: 320,
+                            height: SizeConfig.screenHeight*0.25,
+                            width: SizeConfig.screenWidth*0.95,
                             child: Image.asset(
                               AppImage.getPath("barcode"),
                               fit: BoxFit.fill,),
@@ -83,15 +79,13 @@ class _ticketState extends State<ticket> {
                                 color: Colors.grey,
                                 borderRadius: BorderRadius.circular(20)
                             ),
-
-
                           ),
                         ),
                         SizedBox(height: 20,),
 
                         Container(
-                          margin: EdgeInsets.only(left: 25),
-                          child: Column(
+                          margin: EdgeInsets.only(left: 15),
+                          child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Cimengis Musical Festival', style: TextStyle(
@@ -104,86 +98,60 @@ class _ticketState extends State<ticket> {
                                   fontSize: 15, fontWeight: FontWeight.bold,
                                   fontFamily: "Lato",
                                   color: Colors.grey),),
-
-
                             ],
                           ),
                         ),
                         SizedBox(height: 10,),
-                        Container(
-                          margin: EdgeInsets.only(left: 25),
-                          height: 140,
-                          width: 310,
-                          decoration: BoxDecoration(
+                        const Row(
+                          children: [
+                            SizedBox(width: 15,),
 
-                            borderRadius: BorderRadius.circular(20),
+                            Text('Date', style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold,
+                                fontFamily: "Lato",
+                                color: Colors.grey),),
+                            Spacer(),
 
+                            Text('Times', style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold,
+                                fontFamily: "Lato",
+                                color: Colors.grey),),
+                            SizedBox(width: 15,)
 
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(width: 15,),
+
+                            Text('23 March 2023', style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold,
+                                fontFamily: "Lato",
+                                color: Colors.black),),
+                            Spacer(),
+
+                            Text('1:30 PM', style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold,
+                                fontFamily: "Lato",
+                                color: Colors.black),),
+                            SizedBox(width: 15,)
+
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 60,
+                        ),
+                        Center(
+                          child: Container(
+                            width: SizeConfig.screenWidth,
+                            child: CustomPaint(
+                              painter: HorizontalDottedLinePainter(),
+                            ),
                           ),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
+                        ),
 
-                                  Container(
-
-                                    child: Text(' Date', style: TextStyle(
-                                        fontSize: 15, fontWeight: FontWeight.bold,
-                                        fontFamily: "Lato",
-                                        color: Colors.grey),),
-                                  ),
-                                  Spacer(),
-
-                                  Container(
-                                    child: Text('Times', style: TextStyle(
-                                        fontSize: 15, fontWeight: FontWeight.bold,
-                                        fontFamily: "Lato",
-                                        color: Colors.grey),),
-                                  ),
-
-
-                                ],
-                              ),
-                              Row(
-                                children: [
-
-                                  Container(
-
-                                    child: Text('23 March 2023', style: TextStyle(
-                                        fontSize: 15, fontWeight: FontWeight.bold,
-                                        fontFamily: "Lato",
-                                        color: Colors.black),),
-                                  ),
-                                  Spacer(),
-
-                                  Column(
-                                    children: [
-                                      Container(
-
-                                        child: Text('1:30 PM', style: TextStyle(
-                                            fontSize: 15, fontWeight: FontWeight.bold,
-                                            fontFamily: "Lato",
-                                            color: Colors.black),),
-                                      ),
-
-
-                                    ],
-                                  ),
-
-
-                                ],
-                              ),
-
-                              SizedBox(
-                                height: 30,
-                              ),
-
-
-
-
-                            ],
-                          ),
-
+                        const SizedBox(
+                          height: 35,
                         ),
 
 
@@ -198,39 +166,30 @@ class _ticketState extends State<ticket> {
 
                               ),
                             )
-
-
                         )
-
-
-
-
-
                       ],
-
-
                     ),
-
-
                   ),
-
                 ],
               ),
 
             ),
-            DefaultButtonWithGradient(
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: DefaultButtonWithGradient(
               buttonText: "Save ticket",
               paddingTop: 10,
               paddingBottom: 10,
-              horizontalPading: 50,
+              horizontalPading: 0,
               onTap: () {
               },
             ),
-          ],
-        ),
-
-
+          ),
+        ],
       ),
+
+
     );
   }
 }

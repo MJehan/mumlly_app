@@ -1,16 +1,21 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:new_mumlly_app/Common/Buttons/default_button.dart';
+import 'package:hive/hive.dart';
+import 'package:new_mumlly_app/API%20Service/otp_service.dart';
 import 'package:new_mumlly_app/Common/Buttons/default_gradient_button.dart';
-import 'package:new_mumlly_app/Common/bottom_navigation_bar.dart';
+import 'package:new_mumlly_app/Model/api_model.dart';
+import 'package:new_mumlly_app/Model/otp_model.dart';
+import 'package:new_mumlly_app/Model/veryfy_otp.dart';
 import 'package:new_mumlly_app/Provider/provider.dart';
 import 'package:new_mumlly_app/Provider/theme_provider.dart';
+import 'package:new_mumlly_app/Screens/Student/student_home_screen.dart';
+import 'package:new_mumlly_app/Singleton/current%20user%20singleton.dart';
 import 'package:new_mumlly_app/Utilities/colors.dart';
 import 'package:new_mumlly_app/Utilities/images.dart';
 import 'package:new_mumlly_app/Utilities/size_config.dart';
+import 'package:new_mumlly_app/Utilities/utility.dart';
 
 import 'package:provider/provider.dart';
 
@@ -29,6 +34,8 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
   Duration myDuration = Duration(minutes: 2);
   final _formKey = GlobalKey<FormState>();
   bool isLoadingForLogin = false;
+  CommonProvider commonProvider = Provider.of<CommonProvider>(Utility.context);
+  bool isCheckingSubDomain = false;
   late ThemeProvider themeProvider;
   void startTimer() {
     countdownTimer =
@@ -94,7 +101,7 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
                   child: Container(
                     child: Column(
                       children: [
-                        Image.asset(AppImage.getPath("appLogo"),fit: BoxFit.scaleDown,height: 210,),
+                        Image.asset(AppImage.getPath("Applogo2"),fit: BoxFit.scaleDown,height: 250,),
                         SizedBox(height: 30,),
                         const Text(
                             "Enter the otp to verify it's you.",
@@ -148,20 +155,50 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
                               ),
                               SizedBox(height: 20,),
                               DefaultButtonWithGradient(
-                                paddingBottom: 15,
-                                paddingTop: 15,
+                                paddingBottom: 13,
+                                paddingTop: 13,
                                 buttonText: "Verify Otp",
                                 onTap: (){
-                                  otpString = controllersToString(controllers);
-                                  print(otpString);
-                                  Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
+                                  Navigator.of(context).pushReplacementNamed(StudentHomeScreen.routeName);
+                                  print(otpController.text);
+                                  Utility.showLoadingDialog();
                                   // if(_formKey.currentState!.validate()) {
-                                //   // setState(() {
-                                //   //   isCheckingSubDomain = true;
-                                //   // });
-                                //   Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
-                                // }
-                              },),
+                                  //   Utility.showLoadingDialog();
+                                  //   OtpService.Otp(otpController.text).then((value)async{
+                                  //     Utility.pop();
+                                  //     if(value.data!=null){
+                                  //       CommonProvider().setVerifyOtp(value.data!);
+                                  //       Navigator.of(context).pushReplacementNamed(StudentHomeScreen.routeName);
+                                  //     }else{}
+                                  //
+                                  //   });
+                                  // }
+                                  if(_formKey.currentState!.validate()) {
+                                    setState(() {
+                                      isCheckingSubDomain = true;
+                                    });
+                                    OtpService.verifyOtp(otpController.text).then((value){
+                                      APIResponse<OtpModel> responseOtp = value as APIResponse<OtpModel>;
+                                      setState(() {
+                                        isCheckingSubDomain = false;
+                                      });
+                                      if(value.data!=null){
+                                        OtpModel? otpResponse = responseOtp.data;
+                                        CurrentUser().setVerifyOtp(otpResponse as verifyOtpModel);
+                                        Box box = Hive.box("loginData");
+                                        if(CurrentUser().verifyOtp?.message == "Verification done successfully."){
+                                          box.put("otpVerify", true);
+                                          Navigator.of(context).pushReplacementNamed(StudentHomeScreen.routeName);
+                                        } else{
+                                          // showInSnackBar(context, CurrentUser().verifyOtp!.message, (){});
+                                        }
+                                      }else{}
+
+                                    });
+                                  }
+                                },),
+
+
                               SizedBox(height: 15,),
                               isLoadingForLogin?  Center(child: SpinKitCircle(color: AppColor.defaultColor),) : InkWell(
                                 onTap:(){
@@ -225,6 +262,15 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
   String controllersToString(List<TextEditingController> controllers) {
     // Join the text from all controllers into a single string
     return controllers.map((controller) => controller.text).join('');
+  }
+
+  showInSnackBar(BuildContext context, String value, Function onRetry,{int durationInSeconds= 3}){
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      duration: Duration(seconds: durationInSeconds),
+      content: Text(value,style: TextStyle(fontSize: 17,color: Colors.white),),
+      backgroundColor: Colors.black,
+      action: onRetry==null?null:SnackBarAction(label: 'Retry',textColor: Colors.white60,onPressed: onRetry(),),
+    ));
   }
 }
 

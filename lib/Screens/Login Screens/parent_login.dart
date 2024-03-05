@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:new_mumlly_app/Common/Buttons/default_gradient_button.dart';
 import 'package:new_mumlly_app/Common/Form%20Field/custom_form_field.dart';
 import 'package:new_mumlly_app/Common/bottom_navigation_bar.dart';
+import 'package:new_mumlly_app/Common/login_custom_input_field.dart';
 import 'package:new_mumlly_app/Provider/provider.dart';
 import 'package:new_mumlly_app/Provider/theme_provider.dart';
 import 'package:new_mumlly_app/Screens/Login%20Screens/login_screen.dart';
@@ -25,10 +26,17 @@ class ParentLoginScreen extends StatefulWidget {
 
 class _ParentLoginScreenState extends State<ParentLoginScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _usernameTextController= TextEditingController();
+  final passwordTextController= TextEditingController();
+  final CpasswordTextController= TextEditingController();
+  final PhoneNumberTextController= TextEditingController();
+  final emailTextController= TextEditingController();
   late ThemeProvider themeProvider;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isPasswordHide = true;
+  bool CPasswordHide = true;
+  bool PasswordHide = true;
   bool buttonChecker = true;
   CommonProvider commonProvider = Provider.of<CommonProvider>(Utility.context);
   bool _obscureText = true;
@@ -48,7 +56,7 @@ class _ParentLoginScreenState extends State<ParentLoginScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Column(
                     children: [
-                      Image.asset(AppImage.getPath('parent_login'),width: 110,height: 110,),
+                      Image.asset(AppImage.getPath('Applogo2'),width: 110,height: 110,),
                       Form(
                         key: _formKey,
                         child: Column(
@@ -57,7 +65,7 @@ class _ParentLoginScreenState extends State<ParentLoginScreen> {
                           children: <Widget>[
                             const Center(
                               child: Text(
-                                "Let's Sign in",
+                                "Let's Sign Up",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 25
@@ -81,240 +89,83 @@ class _ParentLoginScreenState extends State<ParentLoginScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: <Widget>[
-                                  const SizedBox(height: 10,),
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 25.0, right: 20),
-                                    child: Text(
-                                      "User Name",
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontFamily: "Lato",
+                                  const SizedBox(height: 20,),
+
+                                  LoginCustomInputField(
+                                    controller: _usernameTextController,
+                                    hintText: "Type Your Username",
+                                    prefixIcon: Icon(Icons.person,size: 25 ),
+                                  ),
+                                  const SizedBox(height: 8,),
+                                  LoginCustomInputField(
+                                    controller: emailTextController,
+                                    hintText: "Type Your Email",
+                                    prefixIcon: Icon(Icons.mail,size: 25 ),
+                                  ),
+                                  const SizedBox(height: 8,),
+                                  LoginCustomInputField(
+                                    controller: PhoneNumberTextController,
+                                    hintText: "Type Your Phone Number",
+                                    prefixIcon: Icon(Icons.phone,size: 25 ),
+                                    keyboardType: TextInputType.number,
+
+                                  ),
+                                  const SizedBox(height: 8,),
+                                  LoginCustomInputField(
+                                    controller: passwordTextController,
+                                    validator: (value) {
+                                      if(value!.isEmpty){
+                                        return "Password can't be empty";
+                                      }
+                                      return null;
+                                    },
+                                    hintText: "Type New Password",
+                                    obscureText: isPasswordHide,
+                                    suffixWidget: InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          isPasswordHide =
+                                          !isPasswordHide;
+                                        });
+                                      },
+                                      child: Icon(
+                                        isPasswordHide
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
+                                        size: 22.0,
                                       ),
                                     ),
+                                    prefixIcon: Icon(Icons.lock),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0, right: 20),
-                                    child: Column(
-                                      children: [
-                                        TextField(
-
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            labelText: ' Type your User Name',
-                                            hintStyle: TextStyle(fontSize: 10, fontFamily: 'Lato'),
-
-                                            border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(10.0), // Set the border radius
-                                              borderSide: BorderSide.none, // Remove the border
-                                            ),
-                                            contentPadding: EdgeInsets.only(left: 10),
-
-                                            prefixIcon: Icon(
-                                              Icons.person,
-                                              size: 25,
-                                              color: AppColor.black.withOpacity(0.6),
-                                            ),
-                                          ),
-
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(height: 5,),
-
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 25.0, right: 20),
-                                    child: Text(
-                                      "Email",
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontFamily: "Lato",
+                                  const SizedBox(height: 8,),
+                                  LoginCustomInputField(
+                                    controller: CpasswordTextController,
+                                    validator: (value) {
+                                      if(value!.isEmpty){
+                                        return "Password can't be empty";
+                                      }
+                                      return null;
+                                    },
+                                    hintText: "Confirm New Password",
+                                    obscureText: CPasswordHide,
+                                    suffixWidget: InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          CPasswordHide =
+                                          !CPasswordHide;
+                                        });
+                                      },
+                                      child: Icon(
+                                        CPasswordHide
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
+                                        size: 22.0,
                                       ),
                                     ),
+                                    prefixIcon: Icon(Icons.lock),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0, right: 20),
-                                    child: Column(
-                                      children: [
-                                        TextFormField(
-
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-
-                                            labelText: ' Type your Email',
-                                            hintStyle: TextStyle(fontSize: 10, fontFamily: 'Lato',
-                                                color: Colors.grey),
-
-                                            border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(10.0), // Set the border radius
-                                              borderSide: BorderSide.none, // Remove the border
-                                            ),
-                                            contentPadding: EdgeInsets.only(left: 10),
 
 
-                                            prefixIcon: Icon(
-                                              Icons.mail,
-                                              size: 25,
-                                              color: AppColor.black.withOpacity(0.6),
-                                            ),
-                                          ),
-
-                                          keyboardType: TextInputType.emailAddress,
-
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(height: 5.0),
-
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 25.0, right: 20),
-                                    child: Text(
-                                      "Phone Number",
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontFamily: "Lato",
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0, right: 20),
-                                    child: Column(
-                                      children: [
-                                        TextField(
-
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            labelText: ' Type your Phone Number',
-                                            hintStyle: TextStyle(fontSize: 10, fontFamily: 'Lato'),
-
-                                            border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(10.0), // Set the border radius
-                                              borderSide: BorderSide.none, // Remove the border
-                                            ),
-                                            contentPadding: EdgeInsets.only(left: 10),
-
-                                            prefixIcon: Icon(
-                                              Icons.phone,
-                                              size: 25,
-                                              color: AppColor.black.withOpacity(0.6),
-                                            ),
-                                          ),
-                                          keyboardType: TextInputType.phone,
-
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(height: 5.0),
-
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 25.0, right: 20),
-                                    child: Text(
-                                      "Password",
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontFamily: "Lato",
-
-
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0, right: 20),
-                                    child: Column(
-                                      children: [
-                                        TextField(
-                                          obscureText: _obscureText,
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            labelText: ' Type Your Password',
-                                            hintStyle: TextStyle(fontSize: 10),
-
-                                            border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(10.0), // Set the border radius
-                                              borderSide: BorderSide.none, // Remove the border
-                                            ),
-                                            contentPadding: EdgeInsets.only(left: 10),
-                                            suffixIcon: GestureDetector(
-                                              onTap:_togglePasswordView ,
-                                              child: Icon(
-                                                _obscureText ? Icons.visibility : Icons.visibility_off, // Add this line
-                                              ),
-
-                                            ),
-                                            prefixIcon: Icon(
-                                              Icons.lock,
-                                              size: 25,
-                                              color: AppColor.black.withOpacity(0.6),
-                                            ),
-                                          ),
-
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(height: 5.0),
-
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 25.0, right: 20),
-                                    child: Text(
-                                      "Confirm Password",
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontFamily: "Lato",
-
-
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0, right: 20),
-                                    child: Column(
-                                      children: [
-                                        TextField(
-                                          obscureText: _obscureText,
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            labelText: ' Type Your Password',
-                                            hintStyle: TextStyle(fontSize: 10),
-
-                                            border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(10.0), // Set the border radius
-                                              borderSide: BorderSide.none, // Remove the border
-                                            ),
-                                            contentPadding: EdgeInsets.only(left: 10),
-                                            suffixIcon: GestureDetector(
-                                              onTap:_togglePasswordView ,
-                                              child: Icon(
-                                                _obscureText ? Icons.visibility : Icons.visibility_off, // Add this line
-                                              ),
-
-                                            ),
-                                            prefixIcon: Icon(
-                                              Icons.lock,
-                                              size: 25,
-                                              color: AppColor.black.withOpacity(0.6),
-                                            ),
-                                          ),
-
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(height: 5.0),
-
-                                  const SizedBox(height: 10.0),
                                 ],
                               ),
                             ),
@@ -332,6 +183,7 @@ class _ParentLoginScreenState extends State<ParentLoginScreen> {
                                       style: TextStyle(
                                         color: AppColor.loginTabColor,
                                         fontWeight: FontWeight.w700,
+                                        fontFamily: "Lato",
                                         fontSize: 13,
                                       ),
                                     ),
@@ -339,64 +191,31 @@ class _ParentLoginScreenState extends State<ParentLoginScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 20,),
+                            const SizedBox(height: 40,),
                             DefaultButtonWithGradient(
-                              paddingTop: 15,
-                              paddingBottom: 15,
-                              buttonText: "Sign in",
+                              paddingTop: 13,
+                              paddingBottom: 13,
+                              buttonText: "Sign Up",
                               color: AppColor.defaultColor,
                               onTap: () {
                                 Navigator.of(context).pushNamed(LoginScreen.routeName);
                               },
                             ),
-                            const SizedBox(height: 10,),
-                            Column(
+                            const SizedBox(height: 30,),
+
+                            const Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 20.0),
-                                  child: GestureDetector(
-                                    onTap: ()   async {
-                                      Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
-                                    },
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Login as',
-                                          style: TextStyle(
-                                            color: AppColor.loginTabColor,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                        const Text(
-                                          ' Student?',
-                                          style: TextStyle(
-                                            //color: AppColor.loginTabColor,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 20,),
-                            Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 20.0),
+                                  padding: EdgeInsets.only(right: 20.0),
                                   child: Row(
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
+                                    children: [
                                       Text(
                                         'By logging in, you agree to our',
                                         style: TextStyle(
                                           fontSize: 15,
+                                          fontFamily: "Lato",
                                         ),
                                       ),
                                     ],
@@ -421,6 +240,7 @@ class _ParentLoginScreenState extends State<ParentLoginScreen> {
                                             style: TextStyle(
                                               color: AppColor.loginTabColor,
                                               fontSize: 15,
+                                              fontFamily: "Lato",
                                             ),
                                           ),
                                           const Text(
@@ -429,12 +249,14 @@ class _ParentLoginScreenState extends State<ParentLoginScreen> {
                                               //color: AppColor.loginTabColor,
                                               fontWeight: FontWeight.w700,
                                               fontSize: 15,
+                                              fontFamily: "Lato",
                                             ),
                                           ),
                                           Text(
                                             'Privacy Policy',
                                             style: TextStyle(
                                               color: AppColor.loginTabColor,
+                                              fontFamily: "Lato",
                                               fontSize: 15,
                                             ),
                                           ),

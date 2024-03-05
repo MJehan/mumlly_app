@@ -21,7 +21,7 @@ class _reportState extends State<report> {
 
   File? _image;
 
-  Future<void> _getImage() async {
+  Future<void> _pickImage() async {
     final pickedFile = await ImagePicker().getImage(source: ImageSource.gallery);
 
     setState(() {
@@ -32,36 +32,31 @@ class _reportState extends State<report> {
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFFFFEF9),
       appBar: AppBar(
-
-        toolbarHeight: 80,
-        title: const Text(
-          '       Choose Date',
-          style: TextStyle(fontFamily: "Lato",),
-        ),
-
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(25),
-
-            gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: <Color>[
-                  Colors.white,
-                  Colors.purple.shade50,
-                  Colors.purple.shade600.withOpacity(0.3)
-                ]),
+          toolbarHeight: 80,
+          title: const Text(
+            '          Choose Date',
+            style: TextStyle(fontFamily: "Lato",),
           ),
-        ),
-
-
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(0),
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    AppColor.defaultButtonColor.withOpacity(0.6),
+                    //AppColor.defaultColor1,
+                    AppColor.white.withOpacity(0.1)
+                  ]
+              ),
+            ),
+          )
       ),
 
       body: Column(
@@ -939,13 +934,13 @@ class _reportState extends State<report> {
                          crossAxisAlignment: CrossAxisAlignment.center,
                          mainAxisAlignment: MainAxisAlignment.center,
                          children: [
-                           Text('30',
+                           const Text('30',
                              style: TextStyle(fontSize: 18,
                                  fontFamily: "Lato",
                                  fontWeight: FontWeight.w400),),
                            SizedBox(height: 8,),
 
-                           Text('Nov',
+                          const  Text('Nov',
                              style: TextStyle(fontSize: 18,
                                  fontFamily: "Lato",
                                  fontWeight: FontWeight.w300),),
@@ -972,56 +967,57 @@ class _reportState extends State<report> {
            ),
          ),
 
-          SizedBox(height: 40,),
-          InkWell(
-            onTap: () {
-              _getImage();
-            },
-            child: Container(
-              height: 130,
-              width: 130,
-
-              padding: EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(80),
-                  color: Colors.grey.shade300
-              ),
-              // child: _image == null
-              //     ? Text('No image selected.')
-              //     : Image.file(_image!),
-              child: const Center(
-                child: Text(
-                  'Choose Image',
-                  style: TextStyle(
-                    color: Colors.purple,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: "Lato",
+          SizedBox(height: 45,),
+          Center(
+            child: InkWell(
+              onTap: () {
+                _pickImage();
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  _image == null
+                      ?  const CircleAvatar(
+                    radius: 45.0,
+                    child: Icon(
+                      Icons.camera_alt,
+                      size: 35.0,
+                    ),
+                  )
+                      : ClipOval(
+                    child: Image.file(
+                      _image!,
+                      height: 90.0,
+                      width: 90.0,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
+                ],
               ),
-
             ),
           ),
 
           SizedBox(height: 20,),
 
-          const SizedBox(
-            height: 150,
-            width: 300,
-            child: Text('No report available for today',
-            style: TextStyle(fontSize: 30, fontFamily: "Lato",
-                fontWeight: FontWeight.bold),),
+          const Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(25.0),
+              child: Text('No report available for today',
+              style: TextStyle(fontSize: 30, fontFamily: "Lato",
+                  fontWeight: FontWeight.w500),),
+            ),
           ),
-          SizedBox(height: 80,),
-          DefaultButtonWithGradient(
-            buttonText: "Creat Report",
-            paddingTop: 10,
-            paddingBottom: 10,
-            horizontalPading: 50,
-            onTap: () {
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: DefaultButtonWithGradient(
+              buttonText: "Creat Report",
+              paddingTop: 10,
+              paddingBottom: 10,
+              // horizontalPading: 50,
+              onTap: () {
 
-            },
+              },
+            ),
           ),
         ],
       ),

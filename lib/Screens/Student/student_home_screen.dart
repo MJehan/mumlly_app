@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:new_mumlly_app/Common/side_bar.dart';
+import 'package:new_mumlly_app/Provider/theme_provider.dart';
 import 'package:new_mumlly_app/Screens/App%20Screens/AlleventPage.dart';
 import 'package:new_mumlly_app/Screens/App%20Screens/add_new_child.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/child_managment.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/all_children.dart';
 import 'package:new_mumlly_app/Screens/App%20Screens/eventDetails.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/profile_events.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/transfer.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/event_details2.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/parents_profile.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/student_profile_screen.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/tom_screen.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/zainab_screen.dart';
 import 'package:new_mumlly_app/Utilities/colors.dart';
 import 'package:new_mumlly_app/Utilities/images.dart';
 import 'package:new_mumlly_app/Utilities/size_config.dart';
+import 'package:provider/provider.dart';
+
 
 
 class StudentHomeScreen extends StatefulWidget {
@@ -21,8 +27,13 @@ class StudentHomeScreen extends StatefulWidget {
 
 class _StudentHomeScreenState extends State<StudentHomeScreen> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+
+  get isLoadingForCommonData => null;
+  late ThemeProvider themeProvider;
+
   @override
   Widget build(BuildContext context) {
+    themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       key: _globalKey,
       drawer: const NavDrawer(),
@@ -43,7 +54,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                             onPressed: (){
                               _globalKey.currentState?.openDrawer();
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.menu_rounded,
                               color: Colors.grey,
                             ),
@@ -68,13 +79,13 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                                     InkWell(
                                       onTap: () => Navigator.push(
                                         context,
-                                        MaterialPageRoute(builder: (context) => All_event_page()),
+                                        MaterialPageRoute(builder: (context) => ParentsProfileScreen()),
                                       ),
                                       child: Text(
                                         "Zainab Bashir",
                                         style: TextStyle(
                                             fontSize: 20,
-                                            color: AppColor.fTextColor,
+                                            color: AppColor.textcolor,
                                             fontFamily: "Lato"
 
                                         ),
@@ -86,7 +97,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                               ],
                             ),
                           ),
-                          Column(
+                          const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Icon(Icons.add_alert_rounded),
@@ -102,7 +113,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
             const SizedBox(height: 10,),
 
             SizedBox(
-              height: SizeConfig.screenHeight * 0.72,
+              height: SizeConfig.screenHeight * 0.80,
               child: SingleChildScrollView(
                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,28 +138,21 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                           InkWell(
                             onTap: () => Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => HomeScrean()),
+                              MaterialPageRoute(builder: (context) => AllChildrenScreen()),
                             ),
-                            child: InkWell(
-                              onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Transfer_child()),
-                              ),
 
-                              child: Text(
-                                "View all",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: AppColor.fTextColor,
-                                    fontFamily: "Lato"
-                                ),
+                            child: Text(
+                              "View all",
+                              style: TextStyle(
+                                fontSize: 18,
+                                  color: AppColor.textcolor,
+                                  fontFamily: "Lato"
                               ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 20,),
                     SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
@@ -158,18 +162,27 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                             InkWell(
                               onTap: () => Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => All_event_page()),
+                                MaterialPageRoute(builder: (context) => StudentProfileHomeScreen(name: "Zainab",)),
                               ),
                               child: Container(
-                                height: SizeConfig.screenHeight * 0.30,
+
+                                height: SizeConfig.screenHeight * 0.32,
                                 width: SizeConfig.screenWidth * 0.51,
-                                padding:EdgeInsets.only(left: 5),
+                                padding:EdgeInsets.all(8),
 
                                 margin: EdgeInsets.all(15),
                                 decoration: BoxDecoration(
-                                  color: Colors.grey.shade200,
-
+                                  color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 3,
+                                      blurRadius: 5,
+                                      offset: Offset(0, 3), // changes the shadow position
+                                    ),
+                                  ],
+
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -194,7 +207,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(
+                                          const Text(
                                             '  Zainab',
                                             style: TextStyle(fontSize:20,
                                                 fontWeight: FontWeight.w500,
@@ -208,7 +221,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                                                 fontFamily: "Lato",
                                                 fontWeight: FontWeight.w500,
 
-                                                color: Colors.blue),
+                                              color: AppColor.textcolor,),
                                           ),
                                         ],
                                       ),
@@ -222,24 +235,32 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                             InkWell(
                               onTap: () => Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => All_event_page()),
+                                MaterialPageRoute(builder: (context) => StudentProfileHomeScreen(name: "Tom")),
                               ),
                               child: Container(
-                                height: SizeConfig.screenHeight * 0.30,
+
+                                height: SizeConfig.screenHeight * 0.32,
                                 width: SizeConfig.screenWidth * 0.51,
-                                padding:EdgeInsets.only(left: 5),
+                                padding:EdgeInsets.all(8),
 
                                 margin: EdgeInsets.all(15),
                                 decoration: BoxDecoration(
-                                  color: Colors.grey.shade200,
-
+                                  color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 3,
+                                      blurRadius: 5,
+                                      offset: Offset(0, 3), // changes the shadow position
+                                    ),
+                                  ],
+
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
 
                                   children: [
-
                                     Container(
                                         height: 170,
                                         width: 190,
@@ -259,7 +280,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(
+                                          const Text(
                                             '  Tom',
                                             style: TextStyle(fontSize:20,
                                                 fontWeight: FontWeight.w500,
@@ -273,7 +294,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                                                 fontFamily: "Lato",
                                                 fontWeight: FontWeight.w500,
 
-                                                color: Colors.blue),
+                                              color: AppColor.textcolor,),
                                           ),
                                         ],
                                       ),
@@ -293,15 +314,22 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                                  ),
 
                               child: Container(
-                                height: SizeConfig.screenHeight * 0.30,
+                                height: SizeConfig.screenHeight * 0.32,
                                 width: SizeConfig.screenWidth * 0.54,
                                 padding:EdgeInsets.only(left: 10),
 
                                 margin: EdgeInsets.all(15),
                                 decoration: BoxDecoration(
-                                  color: Colors.grey.shade200,
-
+                                  color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 3,
+                                      blurRadius: 5,
+                                      offset: Offset(0, 3), // changes the shadow position
+                                    ),
+                                  ],
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -334,7 +362,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                                             style: TextStyle(fontSize:24,
                                                 fontWeight: FontWeight.w500,
                                                 fontFamily: "Lato",
-                                                color: Colors.blue),
+                                              color: AppColor.textcolor,),
                                           ),
                                         ],
                                       ),
@@ -350,431 +378,235 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                         )
                     ),
 
-                    const SizedBox(height: 20,),
+                    const SizedBox(height: 10,),
                     Padding(
-                      padding: EdgeInsets.only(left: 15.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            width: SizeConfig.screenWidth*0.73,
-                            child: const Text(
-                              "After school activities",
-                              style: TextStyle(
-                                fontSize: 20,
+                          const Text(
+                            'After School Activities',
+                            style: TextStyle(fontSize:18,
                                 fontWeight: FontWeight.w500,
                                 fontFamily: "Lato",
-                              ),
-                            ),
+                                color: Colors.black),
                           ),
-                          const SizedBox(width: 10),
+                          Spacer(),
+
                           InkWell(
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => event_page()),
                             ),
                             child: Text(
-                              "View all",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: AppColor.fTextColor,
-                                fontFamily: "Lato",
-                              ),
+                              'View All',
+                              style: TextStyle(fontSize:18,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: "Lato",
+                                color: AppColor.textcolor,),
                             ),
                           ),
                         ],
+
                       ),
                     ),
-                    const SizedBox(height: 10,),
-                    InkWell(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => event_details()),
+
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
                       ),
-                      child: Card(
-                        elevation: 5,
-                        margin: const EdgeInsets.only(left: 15,right: 15),
-                        color: AppColor.appBackgroundColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 10,right: 0,bottom: 5,top: 10),
-                          decoration: BoxDecoration(
-                            color: AppColor.white,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                  height: 100,
-                                  width: 95,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey.shade100,
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children:[
+                          InkWell(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => event_details()),
+                            ),
 
-                                  child: Image.asset(
-                                AppImage.getPath("bb"),
-                                  fit: BoxFit.fill)
-                              ),
-                              const SizedBox(width: 20,),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  SizedBox(
-                                    width: SizeConfig.screenWidth * 0.6,
-                                    child: Text(
-                                      "Coding Bootcamp for Kids",
-                                      style: TextStyle(
+                            child: Container(
+                                height: SizeConfig.screenHeight * 0.14,
+                                width: SizeConfig.screenWidth * 0.92,
+                                margin:EdgeInsets.all(10),
+                                padding: EdgeInsets.all(10),
+                                decoration:
+                                BoxDecoration(
+                                  color: Colors.white70,
+                                  borderRadius: BorderRadius.circular(10),),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: SizeConfig.screenHeight * 0.13,
+                                      width: SizeConfig.screenWidth * 0.2,
+                                      child: Image.asset(
+                                        AppImage.getPath("coding_pic"),
+                                        fit: BoxFit.fill,),
+                                      decoration:
+                                      BoxDecoration(color: Colors.grey.shade300,
+                                        borderRadius: BorderRadius.circular(10),),
 
-                                          fontSize: 16,
-                                          color: AppColor.black,
-                                          fontWeight: FontWeight.w500,
-                                        fontFamily: "Lato",
+
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.only(left: 12),
+                                      child: const Column(
+                                        children: [
+                                          SizedBox(height: 5,),
+                                          Text('Coding bootcamp for kids ', style: TextStyle(
+                                              fontSize: 17,fontWeight: FontWeight.bold,
+                                              fontFamily: "Lato",
+                                              color: Colors.black),),
+                                          SizedBox(height: 12,),
+
+                                          Text('By Organiser ', style: TextStyle(
+                                              fontSize: 15,fontFamily: "Lato",
+                                              color: Colors.grey),),
+
+                                          SizedBox(height: 5),
+
+                                          Text('24 March 21 /11.00 PM', style: TextStyle(
+                                              fontSize: 15,fontWeight: FontWeight.bold,
+                                              fontFamily: "Lato",
+                                              color: Colors.grey
+                                          ),),
+
+
+                                        ],
+
+
                                       ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 10,),
-                                  Text(
-                                    "By Organizer",
-                                    style: TextStyle(
-
-                                        fontSize: 12,
-                                        color: AppColor.deepGray,
-                                        fontWeight: FontWeight.w200,
-                                      fontFamily: "Lato",
-                                    ),
-                                  ),
-                                  SizedBox(height: 10,),
-                                  Text(
-                                    "24 March 2021, / 11:00PM",
-                                    style: TextStyle(
-
-                                        fontSize: 14,
-                                        color: AppColor.black,
-                                      fontFamily: "Lato",
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    )
+                                  ],
+                                )
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10,),
-                    InkWell(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => event_details()),
-                      ),
-                      child: Card(
-                        elevation: 5,
-                        margin: const EdgeInsets.only(left: 15,right: 15),
-                        color: AppColor.appBackgroundColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 10,right: 0,bottom: 5,top: 10),
-                          decoration: BoxDecoration(
-                            color: AppColor.white,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                  height: 100,
-                                  width: 95,
-                                  padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey.shade100,
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
+                          InkWell(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => EventDetails2()),
+                            ),
+                            child: Container(
+                                height: SizeConfig.screenHeight * 0.14,
+                                width: SizeConfig.screenWidth * 0.92,
+                                margin:EdgeInsets.all(10),
+                                padding: EdgeInsets.all(10),
+                                decoration:
+                                BoxDecoration(color: Colors.white70,
+                                  borderRadius: BorderRadius.circular(10),),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: SizeConfig.screenHeight * 0.13,
+                                      width: SizeConfig.screenWidth * 0.2,
+                                      child: Image.asset(
+                                        AppImage.getPath("tenis_pic"),
+                                        fit: BoxFit.fill,),
 
-                                  child: Image.asset(
-                                      AppImage.getPath("physics"),
-                                      fit: BoxFit.fill)
-                              ),
-                              const SizedBox(width: 20,),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  SizedBox(
-                                    width: SizeConfig.screenWidth * 0.6,
-                                    child: Text(
-                                      "Physics Conpetition for Kids",
-                                      style: TextStyle(
+                                      decoration:
+                                      BoxDecoration(color: Colors.grey.shade300,
+                                        borderRadius: BorderRadius.circular(10),),
 
-                                        fontSize: 16,
-                                        color: AppColor.black,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: "Lato",
+
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.only(left: 12),
+                                      child: const Column(
+                                        children: [
+                                          SizedBox(height: 5,),
+                                          Text('Table tenis For grade 1 ', style: TextStyle(
+                                              fontSize: 17,fontWeight: FontWeight.bold,
+                                              fontFamily: "Lato",
+                                              color: Colors.black),),
+                                          SizedBox(height: 12,),
+
+                                          Text('By Organiser ', style: TextStyle(
+                                              fontSize: 15,fontFamily: "Lato",
+                                              color: Colors.grey),),
+
+                                          SizedBox(height: 5),
+
+                                          Text('24 March 21 /11.00 PM', style: TextStyle(
+                                              fontSize: 15,fontWeight: FontWeight.bold,
+                                              fontFamily: "Lato",
+                                              color: Colors.grey
+                                          ),),
+
+
+                                        ],
+
+
                                       ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 10,),
-                                  Text(
-                                    "By Organizer",
-                                    style: TextStyle(
-
-                                      fontSize: 12,
-                                      color: AppColor.deepGray,
-                                      fontWeight: FontWeight.w200,
-                                      fontFamily: "Lato",
-                                    ),
-                                  ),
-                                  SizedBox(height: 10,),
-                                  Text(
-                                    "24 March 2021, / 11:00PM",
-                                    style: TextStyle(
-
-                                      fontSize: 14,
-                                      color: AppColor.black,
-                                      fontFamily: "Lato",
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    )
+                                  ],
+                                )
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10,),
-                    InkWell(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => event_details()),
-                      ),
-                      child: Card(
-                        elevation: 5,
-                        margin: const EdgeInsets.only(left: 15,right: 15),
-                        color: AppColor.appBackgroundColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 10,right: 0,bottom: 5,top: 10),
-                          decoration: BoxDecoration(
-                            color: AppColor.white,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                  height: 100,
-                                  width: 95,
-                                  padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey.shade100,
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
+                          InkWell(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => event_details()),
+                            ),
 
-                                  child: Image.asset(
-                                      AppImage.getPath("swiming"),
-                                      fit: BoxFit.fill)
-                              ),
-                              const SizedBox(width: 20,),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  SizedBox(
-                                    width: SizeConfig.screenWidth * 0.6,
-                                    child: Text(
-                                      "Swimming Practice for Kids",
-                                      style: TextStyle(
+                            child: Container(
+                                height: SizeConfig.screenHeight * 0.14,
+                                width: SizeConfig.screenWidth * 0.92,
+                                margin:EdgeInsets.all(10),
+                                padding: EdgeInsets.all(10),
+                                decoration:
+                                BoxDecoration(
+                                  color: Colors.white70,
+                                  borderRadius: BorderRadius.circular(10),),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: SizeConfig.screenHeight * 0.13,
+                                      width: SizeConfig.screenWidth * 0.2,
+                                      child: Image.asset(
+                                        AppImage.getPath("coding_pic"),
+                                        fit: BoxFit.fill,),
+                                      decoration:
+                                      BoxDecoration(color: Colors.grey.shade300,
+                                        borderRadius: BorderRadius.circular(10),),
 
-                                        fontSize: 16,
-                                        color: AppColor.black,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: "Lato",
+
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.only(left: 12),
+                                      child: const Column(
+                                        children: [
+                                          SizedBox(height: 5,),
+                                          Text('Coding bootcamp for kids ', style: TextStyle(
+                                              fontSize: 17,fontWeight: FontWeight.bold,
+                                              fontFamily: "Lato",
+                                              color: Colors.black),),
+                                          SizedBox(height: 12,),
+
+                                          Text('By Organiser ', style: TextStyle(
+                                              fontSize: 15,fontFamily: "Lato",
+                                              color: Colors.grey),),
+
+                                          SizedBox(height: 5),
+
+                                          Text('24 March 21 /11.00 PM', style: TextStyle(
+                                              fontSize: 15,fontWeight: FontWeight.bold,
+                                              fontFamily: "Lato",
+                                              color: Colors.grey
+                                          ),),
+
+
+                                        ],
+
+
                                       ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 10,),
-                                  Text(
-                                    "By Organizer",
-                                    style: TextStyle(
-
-                                      fontSize: 12,
-                                      color: AppColor.deepGray,
-                                      fontWeight: FontWeight.w200,
-                                      fontFamily: "Lato",
-                                    ),
-                                  ),
-                                  SizedBox(height: 10,),
-                                  Text(
-                                    "24 March 2021, / 11:00PM",
-                                    style: TextStyle(
-
-                                      fontSize: 14,
-                                      color: AppColor.black,
-                                      fontFamily: "Lato",
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    )
+                                  ],
+                                )
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10,),
 
-                    InkWell(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => event_details()),
-                      ),
-                      child: Card(
-                        elevation: 5,
-                        margin: const EdgeInsets.only(left: 15,right: 15),
-                        color: AppColor.appBackgroundColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 10,right: 0,bottom: 5,top: 10),
-                          decoration: BoxDecoration(
-                            color: AppColor.white,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                  height: 100,
-                                  width: 95,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey.shade100,
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-
-                                  child: Image.asset(
-                                      AppImage.getPath("bb"),
-                                      fit: BoxFit.fill)
-                              ),
-                              const SizedBox(width: 20,),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  SizedBox(
-                                    width: SizeConfig.screenWidth * 0.6,
-                                    child: Text(
-                                      "Coding Bootcamp for Kids",
-                                      style: TextStyle(
-
-                                        fontSize: 16,
-                                        color: AppColor.black,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: "Lato",
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 10,),
-                                  Text(
-                                    "By Organizer",
-                                    style: TextStyle(
-
-                                      fontSize: 12,
-                                      color: AppColor.deepGray,
-                                      fontWeight: FontWeight.w200,
-                                      fontFamily: "Lato",
-                                    ),
-                                  ),
-                                  SizedBox(height: 10,),
-                                  Text(
-                                    "24 March 2021, / 11:00PM",
-                                    style: TextStyle(
-
-                                      fontSize: 14,
-                                      color: AppColor.black,
-                                      fontFamily: "Lato",
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10,),
-                    InkWell(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => event_details()),
-                      ),
-                      child: Card(
-                        elevation: 5,
-                        margin: const EdgeInsets.only(left: 15,right: 15),
-                        color: AppColor.appBackgroundColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 10,right: 0,bottom: 5,top: 10),
-                          decoration: BoxDecoration(
-                            color: AppColor.white,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                  height: 100,
-                                  width: 95,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey.shade100,
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-
-                                  child: Image.asset(
-                                      AppImage.getPath("bb"),
-                                      fit: BoxFit.fill)
-                              ),
-                              const SizedBox(width: 20,),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  SizedBox(
-                                    width: SizeConfig.screenWidth * 0.6,
-                                    child: Text(
-                                      "Coding Bootcamp for Kids",
-                                      style: TextStyle(
-
-                                        fontSize: 16,
-                                        color: AppColor.black,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: "Lato",
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 10,),
-                                  Text(
-                                    "By Organizer",
-                                    style: TextStyle(
-
-                                      fontSize: 12,
-                                      color: AppColor.deepGray,
-                                      fontWeight: FontWeight.w200,
-                                      fontFamily: "Lato",
-                                    ),
-                                  ),
-                                  SizedBox(height: 10,),
-                                  Text(
-                                    "24 March 2021, / 11:00PM",
-                                    style: TextStyle(
-
-                                      fontSize: 14,
-                                      color: AppColor.black,
-                                      fontFamily: "Lato",
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
+                        ]
                       ),
                     ),
                   ],

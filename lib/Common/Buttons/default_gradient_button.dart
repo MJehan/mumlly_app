@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_locales/flutter_locales.dart';
 import 'package:new_mumlly_app/Provider/theme_provider.dart';
 import 'package:new_mumlly_app/Utilities/colors.dart';
 
@@ -13,7 +12,7 @@ class DefaultButtonWithGradient extends StatelessWidget {
     this.buttonText,
     this.iconData,
     this.onTap,
-    this.color = const Color(0xFF0082CA),
+    this.color = const Color(0xFF4F89C9),
     this.text_color = const Color(0xFFffffff),
     this.horizontalPading = 10,
     this.paddingTop = 20,
@@ -47,7 +46,7 @@ class DefaultButtonWithGradient extends StatelessWidget {
         //transform: Matrix4.skewX(-.2),
         decoration: BoxDecoration(
             gradient : linearGradient?? AppGradient.getColorGradient('purple'),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(30),
             boxShadow: Provider.of<ThemeProvider>(context).themeColor().shadow
         ),
         child: Row(
@@ -58,7 +57,8 @@ class DefaultButtonWithGradient extends StatelessWidget {
               style:  TextStyle(
                   color: text_color,
                   fontSize: textSize,
-                  fontWeight: FontWeight.bold),
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500),
             ),
             if (iconData != null)
               Expanded(

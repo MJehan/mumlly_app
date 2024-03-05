@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_mumlly_app/Common/bottom_navigation_bar.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/child_managment.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/child_profile.dart';
 import 'package:new_mumlly_app/Utilities/colors.dart';
 import 'package:new_mumlly_app/Utilities/size_config.dart';
 
@@ -40,7 +39,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
                           InkWell(
                             onTap: () => Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => HomeScrean()),
+                              MaterialPageRoute(builder: (context) => HomeScreen()),
                             ),
                               child: Icon(Icons.arrow_back,color: AppColor.white,size: 25,),
                           ),

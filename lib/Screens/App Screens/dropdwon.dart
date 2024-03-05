@@ -7,8 +7,8 @@ class CustomDropdown extends StatefulWidget {
 }
 
 class _CustomDropdownState extends State<CustomDropdown> {
-  String selectedValue = 'Type of Notes';
-  List<String> dropdownItems = ['Type of Notes', 'Option 2', 'Option 3', 'Option 4'];
+  String selectedValue = 'What type of notes is this?';
+  List<String> dropdownItems = ['What type of notes is this?', 'Option 2', 'Option 3', 'Option 4'];
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +24,23 @@ class _CustomDropdownState extends State<CustomDropdown> {
         items: dropdownItems.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(value, style: TextStyle(
-                    fontSize: 19,
-                    color: Colors.grey),),
-                // Icon(Icons.arrow_drop_down),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('  $value',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.black),),
+                  // Icon(Icons.arrow_drop_down),
+                ],
+              ),
             ),
           );
         }).toList(),
+        underline: Container(),
       ),
     );
   }

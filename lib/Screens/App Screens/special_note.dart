@@ -17,118 +17,126 @@ class _Special_notesState extends State<Special_notes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFFFFEF9),
       appBar: AppBar(
-
-        toolbarHeight: 120,
-        title: const Text(
-          'Leave a Special Notes',
-          style: TextStyle(fontSize: 20,
-              fontWeight: FontWeight.w500),
-        ),
-
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(25),
-
-            gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: <Color>[
-                  Colors.white,
-                  Colors.purple.shade50,
-                  Colors.purple.shade600.withOpacity(0.3)
-                ]),
+          toolbarHeight: 80,
+          title: const Text(
+            '      Leave a Special Notes',
+            style: TextStyle(fontFamily: "Lato",),
           ),
-        ),
-
-
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(0),
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    AppColor.defaultButtonColor.withOpacity(0.6),
+                    //AppColor.defaultColor1,
+                    AppColor.white.withOpacity(0.1)
+                  ]
+              ),
+            ),
+          )
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(40, 120, 40, 40),
-            child: Container(
-              height: SizeConfig.screenHeight * 0.4,
-              width: SizeConfig.screenWidth * 0.8,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(top: 15),
-                        margin: EdgeInsets.only(left: 15),
-                        child: Text('Term', style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.black),),
-                      ),],
-                  ),
-                  SizedBox(height: 7,),
-                  Row(
-                    children: [
-                      Container(
-                          margin: EdgeInsets.only(left: 30),
-                          height: 50,
-                          width: 240,
-                          padding: EdgeInsets.all(5),
-
-
-                          decoration: BoxDecoration(
-
-                              border: Border.all(color:Colors.deepPurple.shade100),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: CustomDropdown()),
-                    ],
-                  ),
-                  SizedBox(height: 22,),
-
-                  Row(
-                    children: [Container(
-                      margin: EdgeInsets.only(left: 15),
-                      child: Text('Write your notes', style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black),),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 120, 20, 80),
+              child: Container(
+               height: SizeConfig.screenHeight * 0.4,
+                width: SizeConfig.screenWidth * 0.9,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3), // changes position of shadow
                     ),
-                    ],
-                  ),
-                  SizedBox(height: 14,),
-                  TextField(
-                    minLines: 2, // Set this
-                    maxLines: 6, // and this
-                    keyboardType: TextInputType.multiline,
-                  )
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(top: 15),
+                          margin: EdgeInsets.only(left: 15),
+                          child: Text('Category', style: TextStyle(
+                              fontSize: 18, fontFamily: "Lato",
+                              color: Colors.grey.shade500),),
+                        ),],
+                    ),
+                    SizedBox(height: 7,),
+                    Row(
+                      children: [
+                        Container(
+                            margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
+                            height: SizeConfig.screenHeight*0.057,
+                            width: SizeConfig.screenWidth * 0.80,
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                                border: Border.all(color:Colors.yellow.shade200 ),
+                                borderRadius: BorderRadius.circular(30)
+                            ),
+                            child: Container(
+                                margin:EdgeInsets.all(5),
+
+                                child: CustomDropdown())
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 22,),
+
+                    TextField(
+
+                      decoration: InputDecoration(
+                        // filled: true,
+                        labelText: ' Type your notes here',
+                        labelStyle:TextStyle(
+                          fontSize: 18,
+                          fontFamily: "Lato",
+                          color: Colors.grey.shade500,
+                        ),
 
 
-                ],
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0), // Set the border radius
+                          borderSide: BorderSide.none, // Remove the border
+                        ),
+                        contentPadding: EdgeInsets.only(left: 15),
+
+                      ),
+
+                    ),
+
+
+                  ],
+                ),
               ),
             ),
           ),
-          SizedBox(height: 60,),
-          DefaultButtonWithGradient(
-            buttonText: "Send",
-            paddingTop: 10,
-            paddingBottom: 10,
-            horizontalPading: 50,
-            onTap: () {
 
-            },
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: DefaultButtonWithGradient(
+              buttonText: "Send",
+              paddingTop: 10,
+              paddingBottom: 10,
+              // horizontalPading: 50,
+              onTap: () {
+
+              },
+            ),
           ),
         ],
       ),

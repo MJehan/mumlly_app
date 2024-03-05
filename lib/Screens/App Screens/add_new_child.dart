@@ -3,6 +3,10 @@ import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_mumlly_app/Common/Buttons/default_gradient_button.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/childPopup.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
+import 'package:new_mumlly_app/Utilities/images.dart';
+import 'package:new_mumlly_app/Utilities/size_config.dart';
 
 
 
@@ -17,12 +21,12 @@ class add_new_child extends StatefulWidget {
 
 class _add_new_childState extends State<add_new_child> {
   String dropdownValue = 'Calender';
-  String dropValue = 'School';
-  String dValue = 'Class';
+  String dropValue = 'Choose School';
+  String dValue = 'Choose Class';
 
   File? _image;
 
-  Future<void> _getImage() async {
+  Future<void> _pickImage() async {
     final pickedFile = await ImagePicker().getImage(source: ImageSource.gallery);
 
     setState(() {
@@ -56,138 +60,122 @@ class _add_new_childState extends State<add_new_child> {
     return  Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
-
-        toolbarHeight: 80,
-        title: const Text(
-          '     Add New Child',
-          style: TextStyle(fontSize: 20,
-              fontFamily: "Lato",
-              fontWeight: FontWeight.w500),
-        ),
-
-
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(25),
-
-            gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: <Color>[
-                  Colors.white,
-                  Colors.purple.shade50,
-                  Colors.purple.shade600.withOpacity(0.3)
-                ]),
+          toolbarHeight: 80,
+          title: const Text(
+            '    Add New Child',
+            style: TextStyle(fontFamily: "Lato",),
           ),
-        ),
-
-
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(0),
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    AppColor.defaultButtonColor.withOpacity(0.6),
+                    //AppColor.defaultColor1,
+                    AppColor.white.withOpacity(0.1)
+                  ]
+              ),
+            ),
+          )
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              children: [
-                Container(
-                  height: 220,
-                  width: 350,
-                  margin: EdgeInsets.fromLTRB(20, 30, 0, 0),
-        
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 4,
-                        offset: Offset(4, 4), // Shadow position
-                      ),
-                    ],
+            Container(
+              height: SizeConfig.screenHeight * 0.3,
+              width: SizeConfig.screenWidth * 0.9,
+              margin: EdgeInsets.fromLTRB(15, 30, 15, 0),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 4,
+                    offset: Offset(4, 4), // Shadow position
                   ),
-        
-        
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          _getImage();
-                        },
-                        child: Container(
-                          margin: EdgeInsets.fromLTRB(20, 20, 0, 0),
-                          height: 80,
-                          width: 80,
-
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(80),
-                              color: Colors.grey.shade300
-                          ),
-                          // child: _image == null
-                          //     ? Text('No image selected.')
-                          //     : Image.file(_image!),
-                          child: const Center(
-                            child: Text(
-                              'Choose Image',
-                              style: TextStyle(
-                                color: Colors.purple,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: "Lato",
-                              ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 15,),
+                  Center(
+                    child: InkWell(
+                      onTap: () {
+                        _pickImage();
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          _image == null
+                              ?  const CircleAvatar(
+                            radius: 45.0,
+                            child: Icon(
+                              Icons.camera_alt,
+                              size: 35.0,
+                            ),
+                          )
+                              : ClipOval(
+                            child: Image.file(
+                              _image!,
+                              height: 90.0,
+                              width: 90.0,
+                              fit: BoxFit.cover,
                             ),
                           ),
-
-                        ),
+                        ],
                       ),
-                      SizedBox(height: 15,),
-                      Container(
-                        margin: EdgeInsets.only(left: 25),
-                        child: const Text(
-                          'Name',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "Lato",
-                            fontSize: 14,
-                          ),
-                        ),
-        
-                      ),
-                      const SizedBox(height: 15),
-                      Container(
-                        margin: EdgeInsets.only(left: 25),
-                        height: 50,
-                        width: 280,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                            color: Colors.deepPurple.shade100,
-                          ),
-                        ),
-                        child: const TextField (
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-        
-                              hintText: '   Enter Your Name'
-                          ),
-                        )
-        
-                      ),
-                    ],
+                    ),
                   ),
-        
-                ),
-        
-              ],
+                  SizedBox(height:5,),
+                  Container(
+                    margin: EdgeInsets.only(left: 25),
+                    child: const Text(
+                      'Name',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontFamily: "Lato",
+                        fontSize: 14,
+                      ),
+                    ),
+
+                  ),
+                  const SizedBox(height: 15),
+                  Container(
+                    margin: EdgeInsets.only(left: 25),
+                    padding: EdgeInsets.only(left: 15),
+                    height: 50,
+                    width: 280,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      border: Border.all(
+                        color:Color(0xffF4EAB0)
+                      ),
+                    ),
+                    child: const TextField (
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Full Name',
+                        hintStyle: TextStyle(color: Colors.grey,
+                            fontWeight: FontWeight.w400,
+                        fontSize: 14)
+                      ),
+                    )
+
+                  ),
+                ],
+              ),
+
             ),
-            const SizedBox(height: 15,),
+            const SizedBox(height: 10,),
             Container(
-              height: 315,
-              width: 350,
-              margin: const EdgeInsets.fromLTRB(10, 10, 0, 0),
-        
+              height: SizeConfig.screenHeight * 0.38,
+              width: SizeConfig.screenWidth * 0.9,
+              margin: const EdgeInsets.fromLTRB(15, 10, 15, 0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
@@ -200,18 +188,16 @@ class _add_new_childState extends State<add_new_child> {
                 ],
               ),
         
-        
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   const SizedBox(height: 20,),
                   Container(
                     margin: const EdgeInsets.only(left: 25),
                     child: const Text(
                       'Date of Birth',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.grey,
                         fontFamily: "Lato",
                         fontSize: 14,
                       ),
@@ -225,13 +211,14 @@ class _add_new_childState extends State<add_new_child> {
                       _selectDate(context);
                     },
                     child: Container(
-                      margin: EdgeInsets.only(left: 25),
+                      margin: EdgeInsets.only(left: 20),
+                          padding: EdgeInsets.only(left: 15),
                           height: 50,
                           width: 280,
                           decoration: BoxDecoration(
 
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(color: Colors.deepPurple.shade100,),
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all(color:Color(0xffF4EAB0)),
 
 
                           ),
@@ -240,8 +227,14 @@ class _add_new_childState extends State<add_new_child> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _selectedDate == null
-                              ? const Text('No date selected.')
-                              : Text(' ${DateFormat('    MMMM dd, yyyy').format(_selectedDate!)}',
+                              ? const Text('Calender',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontFamily: "Lato",
+                              fontSize: 14,
+                            ),
+                          )
+                              : Text('   ${DateFormat('MMMM dd, yyyy').format(_selectedDate!)}',
                             style: const TextStyle(
                               color: Colors.black,
                               fontFamily: "Lato",
@@ -258,9 +251,9 @@ class _add_new_childState extends State<add_new_child> {
                   Container(
                     margin: EdgeInsets.only(left: 25),
                     child: const Text(
-                      'Choose School',
+                      'School',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.grey,
                         fontFamily: "Lato",
                         fontSize: 14,
                       ),
@@ -274,37 +267,51 @@ class _add_new_childState extends State<add_new_child> {
                     width: 280,
                     decoration: BoxDecoration(
 
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: Colors.deepPurple.shade100,),
+                      borderRadius: BorderRadius.circular(25),
+                      border: Border.all(color:Color(0xffF4EAB0)),
 
                     ),
-                    child: Container(
-                      padding: EdgeInsets.only(left: 30),
-                      child: DropdownButton<String>(
-                        value: dropValue,
-                        items: <String>[
-                          'School',
-                          'AUST',
-                          'EWU',
-                          'BRAC'
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                              style: const TextStyle(fontSize: 18,
-                                  fontFamily: "Lato",
-                                  color: Colors.grey),
-                            ),
-                          );
-                        }).toList(),
-                        underline: Container(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropValue = newValue!;
-                          });
-                        },
-                      ),
+                    child: Row(
+                      children: [
+                        Container(
+                            margin: EdgeInsets.only(left: 15),
+                            height: 20,
+                            width: 20,
+                            child: Image.asset(
+                              AppImage.getPath("school_icon"),
+                              fit: BoxFit.fill,)
+                        ),
+                        SizedBox(width: 15,),
+
+                        Container(
+                          padding: EdgeInsets.only(left: 30),
+                          child: DropdownButton<String>(
+                            value: dropValue,
+                            items: <String>[
+                              'Choose School',
+                              'AUST',
+                              'EWU',
+                              'BRAC'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: const TextStyle(fontSize: 14,
+                                      fontFamily: "Lato",
+                                      color: Colors.grey),
+                                ),
+                              );
+                            }).toList(),
+                            underline: Container(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropValue = newValue!;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
                     ),
 
                   ),
@@ -314,11 +321,11 @@ class _add_new_childState extends State<add_new_child> {
                   Container(
                     margin: EdgeInsets.only(left: 25),
                     child: const Text(
-                      'Choose Class',
+                      'Class',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.grey,
                         fontFamily: "Lato",
-                        fontSize: 18,
+                        fontSize: 14,
                       ),
                     ),
 
@@ -330,36 +337,49 @@ class _add_new_childState extends State<add_new_child> {
                     width: 280,
                     decoration: BoxDecoration(
 
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: Colors.deepPurple.shade100,),
+                      borderRadius: BorderRadius.circular(25),
+                      border: Border.all(color:Color(0xffF4EAB0)),
 
                     ),
-                    child: Container(
-                      padding: EdgeInsets.only(left: 30),
-                      child: DropdownButton<String>(
-                        value: dValue,
-                        items: <String>[
-                          'Class',
-                          'BSc',
-                          'MSc',
-                          'PHD'
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                              style: TextStyle(fontSize: 18,
-                                  fontFamily: "Lato",color: Colors.grey),
-                            ),
-                          );
-                        }).toList(),
-                        underline: Container(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dValue = newValue!;
-                          });
-                        },
-                      ),
+                    child: Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 15),
+                            height: 20,
+                            width: 20,
+                            child: Image.asset(
+                              AppImage.getPath("school_icon"),
+                              fit: BoxFit.fill,)
+                        ),
+                        SizedBox(width: 10,),
+                        Container(
+                          padding: EdgeInsets.only(left: 30),
+                          child: DropdownButton<String>(
+                            value: dValue,
+                            items: <String>[
+                              'Choose Class',
+                              'BSc',
+                              'MSc',
+                              'PHD'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: TextStyle(fontSize: 14,
+                                      fontFamily: "Lato",color: Colors.grey),
+                                ),
+                              );
+                            }).toList(),
+                            underline: Container(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dValue = newValue!;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
                     ),
 
                   ),
@@ -372,7 +392,12 @@ class _add_new_childState extends State<add_new_child> {
               buttonText: "Add Child",
               paddingTop: 10,
               paddingBottom: 10,
-              horizontalPading: 50,
+              // horizontalPading: 50,
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => child_popup()),
+              ),
+
               // onTap: () {
               //   Navigator.of(context).pushNamed(child_popup.routeName);
               // },

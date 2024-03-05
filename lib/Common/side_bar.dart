@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/about.dart';
 import 'package:new_mumlly_app/Screens/App%20Screens/billing.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/profile_events.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/child_profile.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/parents_profile.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/promotion.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/support.dart';
+import 'package:new_mumlly_app/Screens/Login%20Screens/login_screen.dart';
 import 'package:new_mumlly_app/Utilities/colors.dart';
 import 'package:new_mumlly_app/Utilities/images.dart';
 import 'package:new_mumlly_app/Utilities/size_config.dart';
-import 'package:new_mumlly_app/Utilities/utility.dart';
+
+
 
 
 
@@ -38,31 +44,32 @@ class _NavDrawerState extends State<NavDrawer> {
                       child: Row(
                         children: [
                           CircleAvatar(
-                            radius: 30,
-                            backgroundImage: AssetImage(AppImage.getPath("profile")),
+                            radius: 32,
+                            backgroundImage: AssetImage(AppImage.getPath("main_pic")),
                           ),
                           const SizedBox(width: 15.0),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 "Zainab Bashir",
                                 style: TextStyle(
                                     fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "Jost"
+                                    fontWeight: FontWeight.w500,
+                                  fontFamily: "Lato",
                                 ),
                               ),
                               InkWell(
                                 onTap: () => Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => All_event_page()),
+                                  MaterialPageRoute(builder: (context) => ParentsProfileScreen()),
                                 ),
                                 child: Text(
                                   "View Profile",
                                   style: TextStyle(
-                                      fontSize: 12.0,
+                                      fontSize: 13.0,
+                                    fontFamily: "Lato",
                                     color: AppColor.fTextColor,
                                   ),
                                   //getCommonProvider.getDriverDetails()!.data!.phoneCode! + getCommonProvider.getDriverDetails()!.data!.phoneNumber!
@@ -83,6 +90,7 @@ class _NavDrawerState extends State<NavDrawer> {
                 'Billing',
                 style: TextStyle(fontWeight: FontWeight.bold,
                     color: Colors.black54,
+                    fontFamily: "Lato",
                     fontSize: 16),
               ),
               leading: Icon(
@@ -95,39 +103,44 @@ class _NavDrawerState extends State<NavDrawer> {
               ),
             ),
             ListTile(
-              title: const Text(
+              title:  const Text(
                 'Promotions',
                 style: TextStyle(fontWeight: FontWeight.bold,
+                    fontFamily: "Lato",
                     color: Colors.black54,
                     fontSize: 16),
               ),
               leading: Icon(
-                Icons.note_outlined,
+                Icons.contact_page,
                 color: Colors.black54,
               ),
-              onTap: () {
-                Utility.pop();
-              },
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PromotionDcreen()),
+              ),
             ),
             ListTile(
               title: const Text(
                 'Support',
                 style: TextStyle(fontWeight: FontWeight.bold,
                     color: Colors.black54,
+                    fontFamily: "Lato",
                     fontSize: 16),
               ),
               leading: Icon(
                 Icons.broken_image_outlined,
                 color:Colors.black54,
               ),
-              onTap: () {
-                Utility.pop();
-              },
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SupportScreen()),
+              ),
             ),
             ListTile(
               title: const Text(
                 'About',
                 style: TextStyle(fontWeight: FontWeight.bold,
+                    fontFamily: "Lato",
                     color: Colors.black54,
                     fontSize: 16),
               ),
@@ -135,9 +148,10 @@ class _NavDrawerState extends State<NavDrawer> {
                 Icons.settings,
                 color: Colors.black54,
               ),
-              onTap: () {
-                Utility.pop();
-              },
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AboutScreen()),
+              ),
             ),
             SizedBox(height: 240,),
 
@@ -146,6 +160,7 @@ class _NavDrawerState extends State<NavDrawer> {
                 'Sign Out',
                 style: TextStyle(fontWeight: FontWeight.bold,
                     color: Colors.black54,
+                    fontFamily: "Lato",
                     fontSize: 16),
               ),
               leading: Icon(
@@ -153,7 +168,8 @@ class _NavDrawerState extends State<NavDrawer> {
                 color: Colors.black54,
               ),
               onTap: () {
-                Utility.pop();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
               },
             ),
           ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:hive/hive.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/child_managment.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/child_profile.dart';
 import 'package:new_mumlly_app/Screens/Student/attendance_screen.dart';
 import 'package:new_mumlly_app/Screens/Student/student_home_screen.dart';
 
@@ -22,7 +22,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   final List<Widget>screens = [
     const StudentHomeScreen(),
     const AttendanceScreen(),
-    const HomeScrean(),
+    const HomeScreen(),
   ];
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = const StudentHomeScreen();
@@ -68,7 +68,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             if (index == 2) {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomeScrean()),
+                MaterialPageRoute(builder: (context) => HomeScreen()),
               );
             }
           },

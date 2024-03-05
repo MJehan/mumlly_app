@@ -232,14 +232,14 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
                               ],
                             ),
                             const SizedBox(height: 20,),
-                            Column(
+                            const Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 20.0),
+                                  padding: EdgeInsets.only(right: 20.0),
                                   child: Row(
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
+                                    children: [
                                       Text(
                                         'By logging in, you agree to our',
                                         style: TextStyle(

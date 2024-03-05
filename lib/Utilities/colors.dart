@@ -4,13 +4,19 @@ class AppColor{
   static Color lightBlue = const Color(0xff120a8f);
   //static Color defaultColor  = const Color(0xff4169e1);
   static Color defaultColor  = const Color(0xFF395676);
-  static Color defaultColor1  = const Color(0xFF4472C4);
+
+
+  static Color defaultColor1  = const Color(0xFF4F89C9);
+  static Color textcolor  = const Color(0xFF5667FD);
+
+
   static Color defaultColor2  = const Color(0xFFcb8b2c);
   static Color defaultColor3  = const Color(0xFF759a47);
   static Color defaultColor4  = const Color(0xFFb20513);
   static Color defaultColor5 = const Color(0xFFd4c035);
   static Color newButtonColor = const Color(0xff4646b6);
   static Color newBlue = const Color(0xff568AF1);
+  static Color defaultButtonColor  = const Color(0xFF4646B6);
 
 
 
@@ -22,7 +28,7 @@ class AppColor{
 
 
   static Color defaultColorLight = const Color(0xffcca633);
-  static Color white = Colors.white;
+  static Color white = const Color(0xffFFFFFF);
   static Color yellow = const Color(0xffFFBF00);
   static Color pink = const Color(0xffD6728D);
   static Color bangiColor = const Color(0xffDF9263);
@@ -159,18 +165,10 @@ class AppGradient{
             begin: Alignment.topLeft,
             end: Alignment.topRight,
             colors:  [
-              AppColor.purple,
-
-              AppColor.purple,
-              AppColor.purple,
-              AppColor.purple,
-              AppColor.purple,
-
-              AppColor.gray,
-
-
-
-
+              AppColor.defaultButtonColor,
+              AppColor.defaultButtonColor,
+              AppColor.defaultButtonColor,
+              AppColor.defaultButtonColor,
             ]);
       }
 

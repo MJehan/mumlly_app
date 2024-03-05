@@ -1,36 +1,37 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/lession_plan.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/profile_events.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/child_profile2.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/diary.dart';
+import 'package:new_mumlly_app/Screens/App%20Screens/parents_profile.dart';
 import 'package:new_mumlly_app/Screens/App%20Screens/report.dart';
 import 'package:new_mumlly_app/Screens/App%20Screens/special_note.dart';
 import 'package:new_mumlly_app/Screens/App%20Screens/transfer.dart';
-import 'package:new_mumlly_app/Screens/App%20Screens/wow_moments.dart';
 import 'package:new_mumlly_app/Screens/Student/attendance_screen.dart';
 import 'package:new_mumlly_app/Screens/Student/student_home_screen.dart';
+import 'package:new_mumlly_app/Utilities/colors.dart';
 import 'package:new_mumlly_app/Utilities/images.dart';
 
 
-class HomeScrean extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   static const String routeName = "HomeScrean";
-  const HomeScrean({super.key});
+  const HomeScreen({super.key});
 
   @override
-  State<HomeScrean> createState() => _HomeScreanState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreanState extends State<HomeScrean> {
+class _HomeScreenState extends State<HomeScreen> {
 
 
   final List<Widget> _pages = [
     const StudentHomeScreen(),
     const AttendanceScreen(),
-    const HomeScrean(),
+    const HomeScreen(),
   ];
   File? _image;
 
-  Future<void> _getImage() async {
+  Future<void> _pickImage() async {
     final pickedFile = await ImagePicker().getImage(source: ImageSource.gallery);
 
     setState(() {
@@ -44,6 +45,7 @@ class _HomeScreanState extends State<HomeScrean> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFFFFEF9),
 
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,45 +66,39 @@ class _HomeScreanState extends State<HomeScrean> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-            InkWell(
-              onTap: () {
-                _getImage();
-              },
-              child: Container(
-                height: 120,
-                width: 120,
-
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(80),
-                  color: Colors.grey.shade300
-                ),
-                // child: _image == null
-                //     ? Text('No image selected.')
-                //     : Image.file(_image!),
-                child: const Center(
-                  child: Text(
-                    'Choose Image',
-                    style: TextStyle(
-                      color: Colors.purple,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: "Lato",
+                  const SizedBox(height: 15,),
+                  InkWell(
+                    onTap: () {
+                      _pickImage();
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        _image == null
+                            ?  const CircleAvatar(
+                          radius: 50.0,
+                          child: Icon(
+                            Icons.camera_alt,
+                            size: 50.0,
+                          ),
+                        )
+                            : ClipOval(
+                          child: Image.file(
+                            _image!,
+                            height: 100.0,
+                            width: 100.0,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-
-              ),
-            ),
 
 
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: Text(
                       'Name',
@@ -115,7 +111,7 @@ class _HomeScreanState extends State<HomeScrean> {
                     ),
                   ),
                   InkWell(
-                    child: Padding(
+                    child: const Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                         child: Text(
                           'Edit Profile ',
@@ -128,10 +124,10 @@ class _HomeScreanState extends State<HomeScrean> {
                         )),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => All_event_page()));
+                          MaterialPageRoute(builder: (context) => ParentsProfileScreen()));
                     },
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: Text(
                       'Profile, post, performence etc ',
@@ -148,22 +144,21 @@ class _HomeScreanState extends State<HomeScrean> {
           ),
           SizedBox(height: 13),
 
-
-
           Expanded(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
+
                   Card(
                     margin: EdgeInsets.all(10),
                     color: Colors.white,
-                    shadowColor: Colors.purple,
+                    shadowColor: AppColor.defaultColor1,
                     elevation: 5,
                     child: InkWell(
                       onTap: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => second()));
+                            MaterialPageRoute(builder: (context) => ChildProfileScreen2()));
                       },
                       child: SizedBox(
                         child: Padding(
@@ -222,11 +217,76 @@ class _HomeScreanState extends State<HomeScrean> {
 
                     ),
                   ),
-
                   Card(
                     margin: EdgeInsets.all(10),
                     color: Colors.white,
-                    shadowColor: Colors.purple,
+                    shadowColor: AppColor.defaultColor1,
+                    elevation: 5,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => DiaryScreen()));
+
+                      },
+                      child: SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Container(
+                                      height: 20,
+                                      width: 20,
+                                      child: Image.asset(
+                                        AppImage.getPath("main_clock"),
+                                        fit: BoxFit.fill,)
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              const Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    'Diary',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: "Lato",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    ' View Todays Diary',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: "Lato",
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  SizedBox(height: 10,)
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    margin: EdgeInsets.all(10),
+                    color: Colors.white,
+                    shadowColor: AppColor.defaultColor1,
                     elevation: 5,
                     child: InkWell(
                       onTap: () {
@@ -291,7 +351,7 @@ class _HomeScreanState extends State<HomeScrean> {
                   Card(
                     margin: EdgeInsets.all(10),
                     color: Colors.white,
-                    shadowColor: Colors.purple,
+                    shadowColor: AppColor.defaultColor1,
                     elevation: 5,
                     child: InkWell(
                       onTap: (){
@@ -356,7 +416,7 @@ class _HomeScreanState extends State<HomeScrean> {
                   Card(
                     margin: EdgeInsets.all(10),
                     color: Colors.white,
-                    shadowColor: Colors.purple,
+                    shadowColor: AppColor.defaultColor1,
                     elevation: 5,
                     child: InkWell(
                       onTap: () {
@@ -419,199 +479,6 @@ class _HomeScreanState extends State<HomeScrean> {
                       ),
                     ),
                   ),
-                  Card(
-                    margin: EdgeInsets.all(10),
-                    color: Colors.white,
-                    shadowColor: Colors.purple,
-                    elevation: 5,
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => second()));
-                      },
-                      child: SizedBox(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                      height: 20,
-                                      width: 20,
-                                      child: Image.asset(
-                                        AppImage.getPath("main_clock"),
-                                        fit: BoxFit.fill,)
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Lession plan',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Lato",
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'View all lession plan',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: "Lato",
-                                      fontSize: 12,
-                                    ),
-
-                                  ),
-                                  SizedBox(height: 10,)
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Card(
-                    margin: EdgeInsets.all(10),
-                    color: Colors.white,
-                    shadowColor: Colors.purple,
-                    elevation: 5,
-                    child: InkWell(
-                      onTap: () {},
-                      child: SizedBox(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                      height: 20,
-                                      width: 20,
-                                      child: Image.asset(
-                                        AppImage.getPath("main_clock"),
-                                        fit: BoxFit.fill,)
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    '  Diary',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: "Lato",
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    ' View Todays Diary',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: "Lato",
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                  SizedBox(height: 10,)
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Card(
-                    margin: EdgeInsets.all(10),
-                    color: Colors.white,
-                    shadowColor: Colors.purple,
-                    elevation: 5,
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => wow_moments()));
-                      },
-                      child: SizedBox(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                      height: 20,
-                                      width: 20,
-                                      child: Image.asset(
-                                        AppImage.getPath("main_clock"),
-                                        fit: BoxFit.fill,)
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Wow moment',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Lato",
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'View your childs best momment ',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: "Lato",
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                  SizedBox(height: 10,)
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
 
                 ],
               ),
@@ -620,59 +487,6 @@ class _HomeScreanState extends State<HomeScrean> {
         ],
       ),
 
-
-
-
-
-
-      // bottomNavigationBar: BottomAppBar(
-      //   child: Container(
-      //     height: 30,
-      //     child: Row(
-      //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //         children: <Widget>[
-      //           IconButton(
-      //               icon: Icon(Icons.home_filled),
-      //
-      //               onPressed: () {
-      //                 Navigator.push(
-      //                   context,
-      //                   MaterialPageRoute(
-      //                     builder: (context) => StudentHomeScreen(),
-      //                   ),
-      //                 );
-      //               }
-      //           ),
-      //           IconButton(
-      //               icon: Icon(Icons.calendar_today),
-      //
-      //               onPressed: () {
-      //                 Navigator.push(
-      //                   context,
-      //                   MaterialPageRoute(
-      //                     builder: (context) => AttendanceScreen(),
-      //                   ),
-      //                 );
-      //               }
-      //           ),
-      //           IconButton(
-      //               icon: Icon(Icons.person),
-      //
-      //               onPressed: () {
-      //                 Navigator.push(
-      //                   context,
-      //                   MaterialPageRoute(
-      //                     builder: (context) => HomeScrean(),
-      //                   ),
-      //                 );
-      //               }
-      //           ),
-      //
-      //         ]
-      //     ),
-      //   ),
-      //   notchMargin: 40.0,
-      // ),
     );
   }
 }
